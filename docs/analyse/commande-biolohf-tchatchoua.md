@@ -2,40 +2,44 @@
 
 ## 1. Les questions
 
-1. **Où les départs de feu se concentrent-ils dans le 2A ?**
-   Si ils sont concentrés sur quelques zones, la direction y place ses moyens. S'ils sont dispersés, elle répartit les moyens plus largement.
-2. **À chaque niveau de l'indice, quelle part des jours compte au moins un départ de feu ?**
-   Si beaucoup de jours d'alerte sont sans feu, la direction relève le seuil. Si des feux partent à des niveaux bas, elle l'abaisse.
-3. **Combien de jours par été dépasseraient chaque seuil envisagé ?**
-   Si le nombre est compatible avec le budget, elle retient ce seuil. Sinon, elle le relève ou limite le renfort aux zones à risque.
-4. **Le lien entre l'indice et les feux est-il le même en Haute-Corse et en France qu'en Corse-du-Sud ?**
-   S'il est similaire, la direction peut s'appuyer sur les données régionales et nationales. Sinon, elle fixe un seuil propre au 2A.
+1. **Où les départs de feu sont-ils les plus fréquents dans le 2A ?**  
+   Si les feux se produisent surtout dans certaines zones, le SDIS peut y envoyer plus de moyens. Si les feux sont répartis partout, les moyens doivent être répartis sur tout le département.
+
+2. **À chaque niveau de l’indice, combien de jours ont eu au moins un départ de feu ?**  
+   Si beaucoup de jours avec un niveau d’alerte élevé ne donnent aucun feu, le seuil est peut-être trop bas. Si des feux démarrent même avec un niveau faible, il faut peut-être le baisser.
+
+3. **Combien de jours par été dépasseraient les différents seuils possibles ?**  
+   Si un seuil entraîne trop de jours de renfort, il coûtera trop cher. Il faut donc choisir un seuil qui permet de protéger les zones à risque sans dépasser le budget.
+
+4. **Le lien entre l’indice et les feux est-il le même en Corse-du-Sud qu’en Haute-Corse et dans le reste de la France ?**  
+   Si le lien est semblable, on peut utiliser les données régionales et nationales. Sinon, il faudra calculer un seuil spécifique pour la Corse-du-Sud.
 
 ## 2. Les termes inconnus
 
-| Terme | Ce que je crois qu'il veut dire | Ce qu'il faudrait vérifier |
+| Terme | Ce que je pense qu’il veut dire | Ce qu’il faut vérifier |
 |---|---|---|
-| Météo des forêts | Indice quotidien de danger d'incendie lié à la météo | Quel indice exact, à quelle échelle, quels niveaux |
-| Danger élevé | Niveau de l'indice au-dessus d'une valeur donnée | De quel niveau parle la direction |
-| Feu de forêt / départ de feu | Incendie qui démarre en espace naturel | Si les sources comptent la même chose |
-| Dispositif renforcé | Patrouilles, guet et moyens supplémentaires | Contenu et coût par jour |
-| Département | Département administratif (code INSEE 2A) | Si c'est le même périmètre que le SDIS |
+| Météo des forêts | Un indice qui mesure chaque jour le risque d’incendie selon la météo | Quel indice est utilisé, à quelle échelle et quels sont ses niveaux |
+| Danger élevé | Un niveau de l’indice au-dessus d’une certaine valeur | Quelle valeur correspond à ce niveau |
+| Feu de forêt / départ de feu | Un incendie qui commence dans un espace naturel | Si toutes les sources comptent les mêmes feux |
+| Dispositif renforcé | Des patrouilles, du guet et des moyens supplémentaires | Ce que comprend exactement ce dispositif et combien il coûte par jour |
+| Département | Le département administratif de la Corse-du-Sud (2A) | Si le périmètre du SDIS est le même que celui du département |
 
 ## 3. Les besoins
 
-**La décision à éclairer :** où concentrer les moyens du SDIS 2A et à partir de quel niveau de l'indice déclencher le dispositif renforcé en 2027.
+**La décision à éclairer :** décider où concentrer les moyens du SDIS 2A et à partir de quel niveau de l’indice activer le dispositif renforcé en 2027.
 
 **Ce qui manque dans la commande :**
-- La valeur du seuil actuel et le niveau appelé « danger élevé ».
-- La définition de « feu » (taille minimale, interventions comprises ou non).
-- La période d'analyse (combien d'étés).
-- Le budget disponible (nombre de jours de renfort possibles).
+
+- Le seuil actuel et le niveau appelé « danger élevé ».
+- La définition exacte d’un « feu » : faut-il compter tous les départs, même les petits, ou seulement certains incendies ?
+- La période à analyser : combien d’années ou d’étés faut-il étudier ?
+- Le budget disponible, pour savoir combien de jours de renfort sont possibles.
 
 ## 4. Les données
 
 | Question | Donnée idéale | Grain (une ligne = ?) | Période | Fraîcheur | Emprise géographique |
 |---|---|---|---|---|---|
-| 1 | Départs de feu localisés | Un départ de feu | 10 ans minimum, dont 2026 | Annuelle | Corse-du-Sud, par commune |
-| 2 | Indice quotidien et départs de feu | Un jour × une zone | 10 ans minimum | Quotidienne | Corse-du-Sud |
-| 3 | Indice quotidien par zone | Un jour × une zone | 10 ans minimum, été | Quotidienne | Corse-du-Sud |
-| 4 | Indice et départs de feu | Un jour × un département | 10 ans minimum | Quotidienne | 2A, 2B, France |
+| 1 | Liste des départs de feu avec leur localisation | Un départ de feu | Au moins 10 ans, dont 2026 | Annuelle | Corse-du-Sud, par commune |
+| 2 | Indice quotidien et départs de feu | Un jour dans une zone | Au moins 10 ans | Quotidienne | Corse-du-Sud |
+| 3 | Indice quotidien par zone | Un jour dans une zone | Au moins 10 étés | Quotidienne | Corse-du-Sud |
+| 4 | Indice et départs de feu | Un jour dans un département | Au moins 10 ans | Quotidienne | 2A, 2B et France |
