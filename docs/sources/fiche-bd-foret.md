@@ -18,9 +18,9 @@
 | Fréquence de mise à jour | **Contradictoire selon le catalogue** : « Sans régularité » sur data.gouv.fr, « Mise à jour continue » sur cartes.gouv.fr. Dans les faits, la V2 n'est plus reproduite : l'IGN prépare une V3, et publie depuis 2025 un « Masque Forêt v1 » plus récent (images 2021 à 2023), qui localise les surfaces de forêt. Son niveau de détail par rapport à la BD Forêt reste à vérifier. |
 | Volumétrie | Pour la Corse-du-Sud, la surface cartographiée est de 371 670 ha pour un département de 403 739 ha (notice IGN). Nombre de polygones et taille des fichiers : non vérifiés (fichier non ouvert). |
 | Clés disponibles | Aucune clé administrative annoncée (pas de code commune ni de code département dans les attributs listés par l'IGN ; le département est porté par le découpage des fichiers). Jointure possible uniquement **par la géométrie** : croisement spatial avec les limites communales ou départementales (Admin Express) ou avec les points de départ de feu. |
-| Données personnelles | Aucune. Les polygones décrivent la couverture végétale, pas les propriétaires. |
+| Données personnelles | Non vérifiée : aucun fichier n'a encore été ouvert. D'après la documentation de l'IGN, les polygones décrivent la couverture végétale, pas les propriétaires ; à confirmer à l'ouverture du fichier. |
 | Licence | Licence Ouverte / Open Licence version 2.0 (Etalab), affichée sur la page data.gouv.fr. |
-| Questions de mon analyse auxquelles elle pourrait répondre | **Q1** (priorisation géographique) : calculer la surface boisée par commune, pour rapporter les feux et les surfaces brûlées à la forêt exposée. **Q6** (positionnement national) : comparer le 2A aux autres départements à grain égal (feux par km² de forêt). Ne répond à aucune question seule : elle sert de **dénominateur** aux indicateurs construits avec la base des feux. Ne répond pas à Q2 à Q5. |
+| Questions du groupe auxquelles elle pourrait répondre | Numérotation des 4 questions communes (`docs/analyse/commande-groupe.md`, décision D-004). **Q1** (où se concentrent les départs de feu) : en appui, pour calculer la surface boisée par commune et rapporter les départs de feu à la forêt exposée. Elle ne répond à aucune question seule : elle sert de **dénominateur** aux indicateurs construits avec la base des feux. Ne répond pas à Q2, Q3 ni Q4. |
 
 ## Ce que nous avons découvert
 
@@ -34,13 +34,14 @@
 ## Points d'attention pour le chargement (responsable qualité)
 
 1. **Pas de clé administrative** : il faut une jointure spatiale avec Admin Express (même millésime du COG que les autres sources).
-2. **Millésime différent selon le département** : la comparaison nationale (Q6) mélangerait des photos de 2007 à 2018. Le millésime de chaque département doit être conservé comme colonne.
+2. **Millésime différent selon le département** : une comparaison entre départements mélangerait des photos de 2007 à 2018. Le millésime de chaque département doit être conservé comme colonne.
 3. **Périmètre « forêt » à définir** : décider quelles classes de `TFV` comptent comme surface exposée (forêt fermée, forêt ouverte, landes ?). C'est une décision de groupe à consigner dans le journal.
 
 ## Rubriques non vérifiées
 
 | Rubrique | Raison |
 |----------|--------|
+| Données personnelles | Aucun fichier ouvert ; la documentation seule ne suffit pas à l'affirmer. |
 | Format exact et liste réelle des colonnes | Fichier départemental non ouvert ; colonnes connues seulement par la documentation IGN. |
 | Volumétrie (nombre de polygones, taille) | Fichier non ouvert. |
 | Couverture et millésime de la Haute-Corse (2B) | Notice départementale 2B non consultée. |
