@@ -9,9 +9,9 @@ Ce rapport décrit les données telles qu'elles sont. Il ne décide rien : les r
 
 ## Informations du fichier
 
-- `mdf_2024.csv.gz` : 11520 lignes, colonnes `date`, `num_dep`, `niveau_j1`, `niveau_j2`, `nom_dep`
-- `mdf_2025.csv.gz` : 11520 lignes, colonnes `date`, `num_dep`, `niveau_j1`, `niveau_j2`, `dep_nom`
-- `mdf_2026.csv.gz` : 12576 lignes, colonnes `date`, `num_dep`, `niveau_j1`, `niveau_j2`, `nom_dep`
+- `mdf_2024.csv.gz` : 11520 lignes, separateur virgule, colonnes `date`, `num_dep`, `niveau_j1`, `niveau_j2`, `nom_dep` ; exemple de `date` : `2024-06-04T16:00:00Z`
+- `mdf_2025.csv.gz` : 11520 lignes, separateur virgule, colonnes `date`, `num_dep`, `niveau_j1`, `niveau_j2`, `dep_nom` ; exemple de `date` : `2025-06-03T14:50:06Z`
+- `mdf_2026.csv.gz` : 12576 lignes, separateur point-virgule, colonnes `date`, `num_dep`, `niveau_j1`, `niveau_j2`, `nom_dep` ; exemple de `date` : `2026-05-28T14:50:07Z`
 
 ## Profil des colonnes
 

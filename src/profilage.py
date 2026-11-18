@@ -18,6 +18,7 @@ pour changer le chemin).
 from __future__ import annotations
 
 import argparse
+import gzip
 import re
 import sys
 from datetime import date
@@ -66,8 +67,15 @@ def lire_mdf(chemins: list[Path]) -> tuple[pd.DataFrame, list[str]]:
     for chemin in chemins:
         df = pd.read_csv(chemin, dtype=str, keep_default_na=False,
                          sep=None, engine="python")
-        notes.append(f"`{chemin.name}` : {len(df)} lignes, colonnes "
-                     + ", ".join(f"`{c}`" for c in df.columns))
+        ouvrir = gzip.open if chemin.suffix == ".gz" else open
+        with ouvrir(chemin, "rt", encoding="utf-8-sig") as f:
+            entete = f.readline()
+        separateur = "point-virgule" if ";" in entete else "virgule"
+        exemple = df["date"].iloc[0] if "date" in df.columns and len(df) else ""
+        notes.append(f"`{chemin.name}` : {len(df)} lignes, separateur "
+                     f"{separateur}, colonnes "
+                     + ", ".join(f"`{c}`" for c in df.columns)
+                     + (f" ; exemple de `date` : `{exemple}`" if exemple else ""))
         df = df.rename(columns={"dep_nom": "nom_dep"})
         df["fichier"] = chemin.name
         morceaux.append(df)
