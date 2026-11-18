@@ -116,9 +116,9 @@ Dernière mise à jour : 2026-11-18 (D-007, D-008 ajoutées)
 - **Décidé par :** Ahmed PHILIPPE (proposition), à confirmer par le groupe
 - **Contexte :** CORINE Land Cover et la BD Forêt mesurent toutes deux la surface boisée, avec des règles différentes (maille de 25 ha contre 0,5 ha, millésime 2018 contre 2007-2018 selon le département).
 - **Options envisagées :** A. additionner ou fusionner les deux ; B. retenir une seule source par usage.
-- **Décision :** option B. Pour la surface boisée par commune (Q1), la **BD Forêt** ; CORINE Land Cover n'est utilisée que si une comparaison homogène entre départements devient nécessaire. Les deux ne sont jamais additionnées.
+- **Décision :** option B. Pour la surface boisée par commune (Q1), la **BD Forêt** ; pour comparer les départements (Q4), **CORINE Land Cover**, homogène dans toute la France. Les deux ne sont jamais additionnées.
 - **Raison :** additionner deux mesures de la même chose compte deux fois les mêmes surfaces ; les mélanger produit un chiffre qui ne correspond à aucune définition.
-- **Conséquences :** chaque indicateur de surface cite sa source. CORINE Land Cover a une pertinence faible pour les questions actuelles : à écarter si aucun usage n'apparaît.
+- **Conséquences :** chaque indicateur de surface cite sa source ; un indicateur communal et un indicateur départemental de surface boisée ne sont pas comparables entre eux.
 - **Liens :** tickets #28 et #43, pull request #40, `docs/sources/fiche-bd-foret.md`, `docs/sources/fiche-corine-land-cover.md`
 
 ---
