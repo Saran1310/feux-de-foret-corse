@@ -35,7 +35,7 @@ Règle : ce qui n'a pas été vérifié est écrit « non vérifiée ». Les fic
 - **Les feux de l'été 2026.** La BDIFF ne publie que jusqu'à l'année précédente, les interventions s'arrêtent en 2024 et la couverture de 2025 et 2026 dans la source DDT 2A n'est pas confirmée. Nous avons la météo de 2026, mais pas les feux correspondants.
 - **Q4 (Haute-Corse et reste de la France).** Les sources existent (BDIFF et Météo des forêts couvrent la France), mais aucune extraction n'a encore été faite : la présence de la Haute-Corse dans la Météo des forêts est non vérifiée, et l'export BDIFF ne porte que sur le 2A. La question n'a donc pas encore de source **vérifiée**.
 - **Le niveau de danger à l'échelle infra-départementale (Q1 et Q2).** La Météo des forêts ne publie qu'un niveau par département ; aucune source ne donne l'historique du danger par zone.
-- **L'heure réelle de départ du feu.** La BDIFF ne donne que la date et l'heure d'alerte au CODIS, qui peut être postérieure au départ.
+- **L'heure réelle de départ du feu.** La BDIFF ne donne que la `Date de première alerte` (date et heure). Selon le document « Définitions » de la BDIFF, il s'agit du moment où l'information du départ de feu parvient au CODIS : elle peut être postérieure au départ réel.
 
 ### Quelle source nous a surpris, et pourquoi ?
 
