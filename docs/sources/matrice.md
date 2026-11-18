@@ -46,7 +46,7 @@ Pour chaque question, comparaison de la donnée idéale (`commande-groupe.md`, s
 |---|---|---|---|---|---|
 | Q1 | BDIFF | = | au moins 10 ans dont 2026 -> 2006 à 2025 | bilan annuel -> bilan publié l'année suivante (2026 en 2027) | = |
 | Q2 | Météo des forêts + BDIFF | = | toutes les saisons -> juin-septembre 2024 et 2025 en commun | quotidienne -> quotidienne pour l'indice, annuelle pour les feux | = |
-| Q3 | Météo des forêts + BDIFF | jour x département et coût par jour d'activation -> jour x département sans coût | = | = | = |
+| Q3 | Météo des forêts + BDIFF | jour x département et coût par jour d'activation -> jour x département sans coût | toutes les saisons -> juin-septembre 2024 et 2025 en commun | = | = |
 | Q4 | Météo des forêts + BDIFF | = | toutes les saisons -> 2024 et 2025 en commun | idem Q2 | 2A, 2B et France -> 2A seulement extrait (BDIFF), 2B non vérifiée (Météo des forêts) |
 
 ## Décisions
@@ -55,7 +55,7 @@ Pour chaque question, comparaison de la donnée idéale (`commande-groupe.md`, s
 
 | N° | Question | Ce qui manque | Décision | Pourquoi | Ce que la décision coûte |
 |---|---|---|---|---|---|
-| 1 | Q1 | Feux de 2026 | collecter, à défaut renoncer | Le SDIS 2A saisit ses feux et peut nous transmettre 2026 ; sans réponse, la BDIFF (20 saisons à la commune, 2006-2025) suffit pour classer les zones, mais 2026 ne sera publiée qu'en 2027 | Dépend d'une réponse du SDIS avant le 11 décembre ; sans elle, les évolutions de 2026 ne sont pas visibles |
+| 1 | Q1 | Feux de 2026 | collecter, à défaut approximer | Le SDIS 2A saisit ses feux et peut nous transmettre 2026 ; sans réponse, la BDIFF (20 saisons à la commune, 2006-2025) suffit pour classer les zones, mais 2026 ne sera publiée qu'en 2027 | Dépend d'une réponse du SDIS avant le 11 décembre ; sans elle, les évolutions de 2026 ne sont pas visibles |
 | 2 | Q2 | Historique de l'indice (trois saisons) | approximer | Croiser `niveau_j1` (prévision J+1) avec les feux BDIFF de juin à septembre 2024 et 2025 ; élargir l'échantillon grâce à Q4 | 139 feux pour le 2A : taux fragiles ; les 46,5 % de feux hors saison restent hors du champ de l'indice |
 | 3 | Q3 | Coût journalier du dispositif, seuil actuel | collecter | Seul le SDIS 2A les connaît ; le nombre de jours par seuil se calcule déjà avec la Météo des forêts | Dépend d'une réponse avant le 11 décembre ; sans elle, résultat exprimé en jours et non en euros |
 | 4 | Q4 | Feux de la Haute-Corse et de la France ; présence du 2B dans l'indice | vérifier, puis approximer | Les cellules "inconnu" appellent d'abord une vérification : exporter la BDIFF pour le 2B et la France, contrôler le 2B dans la Météo des forêts | Temps d'extraction ; comparaison limitée à deux saisons communes |
