@@ -2,7 +2,7 @@
 
 Une entrée par décision, la plus récente en bas. On ne supprime jamais une entrée : si une décision change, on ajoute une nouvelle entrée qui remplace l'ancienne et on l'indique.
 
-Dernière mise à jour : 2026-11-17 (D-005, D-006 ajoutées)
+Dernière mise à jour : 2026-11-18 (D-007, D-008 ajoutées)
 
 ## Modèle d'entrée
 
@@ -101,6 +101,26 @@ Dernière mise à jour : 2026-11-17 (D-005, D-006 ajoutées)
 - **Conséquences :** les analyses individuelles sont considérées comme finalisées après leur fusion. Toute correction ultérieure devra passer par un ticket et une pull request, afin de conserver la trace de la modification dans l'historique du dépôt.
 - **Liens :** tickets #15 à #18 ; pull requests #1, #24, #25, #35
 
+### D-007 · Millésime retenu pour CORINE Land Cover
+- **Date :** 2026-11-18
+- **Décidé par :** Ahmed PHILIPPE (proposition), à confirmer par le groupe
+- **Contexte :** CORINE Land Cover existe en plusieurs millésimes (1990, 2000, 2006, 2012, 2018). La page data.gouv.fr ne propose que 1990 à 2012 ; le millésime 2018 est publié par le producteur français (SDES).
+- **Options envisagées :** A. prendre 2012 sur data.gouv.fr ; B. prendre 2018 sur le site du SDES ; C. mélanger plusieurs millésimes.
+- **Décision :** option B, un seul millésime : **2018**, téléchargé chez le SDES. Le millésime est conservé comme colonne dans l'entrepôt.
+- **Raison :** c'est le plus proche des feux étudiés (2024-2026), et un seul millésime évite de mélanger des époques.
+- **Conséquences :** l'occupation du sol décrite a 6 à 8 ans de retard sur les feux ; à signaler dans la restitution. À réviser si CLC+ (nouvelle génération) est publié avant le rendu.
+- **Liens :** tickets #28 et #43, pull request #40, `docs/sources/fiche-corine-land-cover.md`
+
+### D-008 · Ne pas additionner CORINE Land Cover et BD Forêt
+- **Date :** 2026-11-18
+- **Décidé par :** Ahmed PHILIPPE (proposition), à confirmer par le groupe
+- **Contexte :** CORINE Land Cover et la BD Forêt mesurent toutes deux la surface boisée, avec des règles différentes (maille de 25 ha contre 0,5 ha, millésime 2018 contre 2007-2018 selon le département).
+- **Options envisagées :** A. additionner ou fusionner les deux ; B. retenir une seule source par usage.
+- **Décision :** option B. Pour la surface boisée par commune (Q1), la **BD Forêt** ; pour comparer les départements (Q4), **CORINE Land Cover**, homogène dans toute la France. Les deux ne sont jamais additionnées.
+- **Raison :** additionner deux mesures de la même chose compte deux fois les mêmes surfaces ; les mélanger produit un chiffre qui ne correspond à aucune définition.
+- **Conséquences :** chaque indicateur de surface cite sa source ; un indicateur communal et un indicateur départemental de surface boisée ne sont pas comparables entre eux.
+- **Liens :** tickets #28 et #43, pull request #40, `docs/sources/fiche-bd-foret.md`, `docs/sources/fiche-corine-land-cover.md`
+
 ---
 
 ## Décisions en attente de confirmation
@@ -114,6 +134,8 @@ Ces entrées sont des propositions de la cheffe de projet, pas encore validées 
 | Validation du glossaire | D-003 | Ahmed PHILIPPE | Relecture demandée, non rendue |
 | Répartition des sources de l'exercice 2 | D-005 | Les 4 membres | À confirmer |
 | Analyses individuelles dans `main` | D-006 | Les 4 membres | À confirmer |
+| Millésime 2018 de CORINE Land Cover | D-007 | Les 4 membres | À confirmer (ticket #43) |
+| Ne pas additionner CORINE Land Cover et BD Forêt | D-008 | Les 4 membres | À confirmer (ticket #43) |
 
 ---
 
