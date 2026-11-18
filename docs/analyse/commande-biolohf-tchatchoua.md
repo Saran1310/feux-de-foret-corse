@@ -70,7 +70,7 @@ Degrés : complet, partiel, absent, inconnu. Chaque cellule cite la rubrique de 
 
 | Question | Ce qui manque | Décision | Pourquoi | Ce que la décision coûte |
 |---|---|---|---|---|
-| 1 | Feux de la saison 2026 | collecter | Le SDIS 2A saisit ses feux et peut transmettre 2026 ; en attendant, la BDIFF (2006 à 2025) suffit pour classer les zones | Dépend d'une réponse avant le 11 décembre ; sans elle, les évolutions de 2026 ne sont pas visibles |
+| 1 | Feux de la saison 2026 | approximer | La BDIFF ne publiera 2026 qu'en 2027 : le groupe exclut les feux de 2026 (décision du groupe, ticket #61) et classe les zones avec la BDIFF de 2006 à 2025 | Les évolutions de 2026 ne sont pas visibles |
 | 2 | Historique de l'indice sur plus de trois saisons | approximer | Croiser `niveau_j1` (prévision) avec les feux BDIFF de juin à septembre 2024 et 2025. Mesure mal le niveau réellement observé, et ignore les feux hors saison (46,5 %) | Échantillon réduit (139 feux dans le 2A) : taux fragiles |
 | 3 | Coût par jour du dispositif et seuil actuel | collecter | Seul le SDIS 2A les connaît ; le nombre de jours par seuil se calcule déjà avec la Météo des forêts | Dépend d'une réponse avant le 11 décembre ; sinon, résultat exprimé en jours et non en euros |
 | 4 | Feux de la Haute-Corse et de la France, présence du 2B dans l'indice | vérifier d'abord, puis approximer | Cellules « inconnu » : exporter la BDIFF pour le 2B et la France, contrôler le 2B dans la Météo des forêts | Temps d'extraction ; comparaison limitée aux deux saisons communes |
