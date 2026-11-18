@@ -31,9 +31,11 @@ Degrés de la consigne : **complet** (répond au grain, sur la période et l'emp
 
 **Questions vers sources.** Aucune question n'a de source "complet". La saison 2026 manque pour les feux, l'indice n'a que trois saisons, et le coût du dispositif n'existe dans aucune source.
 
+**Écart avec l'inventaire.** L'inventaire note la BDIFF "Oui" pour Q1 parce qu'elle répond au bon grain (le feu, rattaché à sa commune) ; la matrice la note "partiel" parce qu'elle applique en plus la période attendue, et la saison 2026 n'est pas publiée. Les deux lectures sont cohérentes : la matrice est la plus stricte et c'est elle qui fait foi pour les décisions.
+
 **Sources vers questions.**
 
-- **Interventions SDIS** : aucune cellule utile pour Q1 à Q4. Source à écarter du pipeline, ou à garder pour un contrôle de cohérence : comparer chaque année ses "Feux de végétations" au nombre de feux de la BDIFF (375 pour le 2A en 2024 contre 111 feux de forêt dans la BDIFF ; les deux notions ne recouvrent pas les mêmes événements).
+- **Interventions SDIS** : aucune cellule utile pour Q1 à Q4. Source à écarter du pipeline, ou à garder pour un contrôle de cohérence : comparer chaque année ses "Feux de végétations" au nombre de feux de la BDIFF (en 2024 pour le 2A : 375 "Feux de végétations" dans le fichier `interventions2024.csv`, rubrique Ce que nous avons découvert de la fiche Interventions SDIS, contre 111 feux de forêt dans l'export BDIFF de la fiche, lignes où `Année` = 2024 ; les deux notions ne recouvrent pas les mêmes événements).
 - **Prométhée** : "inconnu" partout. Une vérification est nécessaire avant toute décision ; sinon, source à écarter pour la v1.
 
 ## Écarts avec la donnée idéale
@@ -49,7 +51,7 @@ Pour chaque question, comparaison de la donnée idéale (`commande-groupe.md`, s
 
 ## Décisions
 
-À consigner une à une dans `docs/journal-des-decisions.md`.
+À consigner une à une dans `docs/decisions.md`.
 
 | N° | Question | Ce qui manque | Décision | Pourquoi | Ce que la décision coûte |
 |---|---|---|---|---|---|
