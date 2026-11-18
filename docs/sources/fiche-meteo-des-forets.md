@@ -26,8 +26,8 @@
 
 1. **Code département non homogène.** L'Ain est codé `1` en 2024 et 2025, mais `01` en 2026. Le code doit être normalisé sur deux caractères avant toute jointure. Le profilage compte 2 160 lignes concernées (départements 1 à 9, saisons 2024 et 2025).
 2. **Schéma variable selon l'année.** La colonne du nom de département s'appelle `nom_dep` en 2024 et 2026, mais `dep_nom` en 2025. Les trois fichiers doivent être harmonisés avant d'être empilés.
-3. **La date est une date de publication.** La colonne `date` contient la date et l'heure de publication avec fuseau horaire (exemple : `2026-05-28T16:50:07+02:00`). Le jour concerné par `niveau_j1` est le lendemain de cette date, celui concerné par `niveau_j2` le surlendemain.
-4. **Format de la date différent selon l'année.** En 2024, la date est écrite en UTC (exemple : `2024-06-04T16:00:00Z`, soit 18 h 00 à Paris) ; en 2025 et 2026, elle porte le décalage horaire (`+02:00`). Toutes les dates doivent être converties à l'heure de Paris avant d'en extraire le jour.
+3. **La date est une date de publication.** La colonne `date` contient la date et l'heure de publication avec fuseau horaire (exemple dans le fichier : `2026-05-28T14:50:07Z`, soit 16 h 50 à Paris ; l'aperçu de data.gouv.fr affiche la même date convertie, `2026-05-28T16:50:07+02:00`). Le jour concerné par `niveau_j1` est le lendemain de cette date, celui concerné par `niveau_j2` le surlendemain.
+4. **Format de fichier différent selon l'année.** Les trois fichiers écrivent la date en UTC (`Z`) : `2024-06-04T16:00:00Z` (18 h 00 à Paris) en 2024, `2025-06-03T14:50:06Z` (16 h 50 à Paris) en 2025 et 2026. Les dates doivent être converties à l'heure de Paris avant d'en extraire le jour. Le séparateur change aussi : virgule en 2024 et 2025, point-virgule en 2026.
 5. **Deux prévisions pour un même jour.** Chaque jour reçoit une prévision à J+2, puis une à J+1. Le groupe doit choisir laquelle sert de référence ; la prévision J+1 est proposée, car c'est elle qui sert à déclencher le dispositif.
 
 ## Ce que nous avons découvert
