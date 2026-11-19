@@ -131,3 +131,59 @@ Question écartée : « Combien de feux en Corse-du-Sud en 2026 ? » — utile c
 - **Dimensions communes** : date, commune, département, zone de danger.
 - **Clé de jointure principale** : (date, département), car l'indice n'existe qu'à ce grain.
 - **Points de vigilance** : harmoniser les codes département (2A/2B, pas 20) ; décider d'utiliser la prévision J+1 ou J+2 (c'est J+1 qui sert à déclencher le dispositif) ; gérer explicitement les jours hors saison sans indice.
+
+
+---
+
+## 5. Confrontation aux sources
+
+Colonnes : les huit sources de l'inventaire du groupe (`docs/sources/inventaire.md`). Abréviations : **MdF** (Archives de la Météo des forêts), **BDIFF**, **DDT 2A** (Données feux de forêt en Corse du Sud), **Prométhée**, **Interv. SDIS** (Interventions des services d'incendie et de secours), **Admin Express**, **BD Forêt**, **CLC** (Corine Land Cover). Les rubriques citées renvoient aux fiches de `docs/sources/`.
+
+### Matrice
+
+| Question | MdF | BDIFF | DDT 2A | Prométhée | Interv. SDIS | Admin Express | BD Forêt | CLC |
+|---|---|---|---|---|---|---|---|---|
+| Q1 Zones qui concentrent les départs | absent : seulement `niveau_j1` / `niveau_j2` par département (rubrique Grain) | partiel : `Code INSEE`, `Surface parcourue (m2)` ; grain commune et 20 ans conformes, mais 2026 non publiée (rubrique Période) | partiel : points de départ documentés (rubrique Grain), mais arrêtés à 2024 et archive non ouverte (rubrique Période) | inconnu : aucun export ouvert | absent : une ligne par département et par année, sans commune (rubrique Grain) | partiel : référentiel, `code_insee` des 124 communes du 2A, sans feux (rubrique Grain) | partiel : dénominateur de surface boisée, photos de 2011 pour le 2A (rubrique Période), fichier non ouvert | partiel : dénominateur, maille de 25 ha trop grossière pour la commune (rubrique Grain) |
+| Q2 Stabilité des zones dans le temps | absent : pas de feux (rubrique Grain) | partiel : `Année` + `Code INSEE` sur 2006-2025 ; 2026 absente (rubrique Période) | partiel : historique depuis 1973, précision variable avant 1990 (rubrique Période) | inconnu : aucun export ouvert | absent : pas de commune (rubrique Grain) | partiel : référentiel ; éditions successives utiles si des communes ont changé (rubrique Période) | absent : une seule photographie, 2011 (rubrique Période) | absent : décrit l'occupation du sol, pas les feux |
+| Q3 Périodes des départs, y compris hors saison | absent : pas de feux, et rien d'octobre à mai (rubrique Période) | partiel : `Date de première alerte` (date et heure, toute l'année) ; selon le document "Définitions" de la BDIFF, moment où l'information du départ de feu parvient au CODIS, qui peut être postérieur au départ réel ; 2026 absente | inconnu : date et heure non vérifiées (archive non ouverte) | inconnu : aucun export ouvert | absent : totaux annuels, sans date (rubrique Grain) | absent : aucune donnée temporelle sur les feux | absent | absent |
+| Q4 Causes des départs, par zone | absent : aucune cause (rubrique Grain) | partiel : `Nature` vide pour 47 % des feux (rubrique Ce que nous avons découvert) | inconnu : cause documentée (rubrique Grain), complétude non vérifiée | inconnu : aucun export ouvert | absent : totaux sans cause | absent | absent | absent |
+| Q5 Feux couverts et fausses alertes par seuil | partiel : `niveau_j1` au grain jour x département, mais 3 saisons (rubrique Période) et pas de zone | partiel : `Date de première alerte` + `Département` ; 139 feux sur juin-septembre 2024-2025, période commune | inconnu : dates non vérifiées ; reprend la BDIFF depuis 2023 (rubrique Propriétaire) | inconnu : aucun export ouvert | absent : aucune donnée journalière | absent : aucune donnée de feu ni de danger | absent | absent |
+| Q6 Même analyse pour les grands feux | partiel : mêmes limites que Q5 | partiel : `Surface parcourue (m2)` complète, mais 18 feux de plus de 50 ha en 20 ans | inconnu : contours des grands feux (rubrique Grain), dates non vérifiées | inconnu : aucun export ouvert | absent : aucune surface | absent | absent | absent |
+| Q7 Jours d'activation et coût par seuil | partiel : `niveau_j1` permet de compter les jours par seuil (2024-2026), sans coût | absent : aucun coût | absent : aucun coût | inconnu : aucun export ouvert | absent : aucun coût par jour | absent | absent | absent |
+| Q8 Comportement de l'indice en 2A, 2B et France | partiel : 96 départements (rubrique Emprise), dont la Haute-Corse (371 bulletins, `docs/qualite/profil-mdf.md`), mais 3 saisons seulement | partiel : export 2B réalisé (4 992 feux 2006-2025, même format que le 2A, `docs/qualite/profil-bdiff-2b.md`) ; France entière non exportée | absent : 2A uniquement (rubrique Emprise) | inconnu : zone méditerranéenne selon la fiche, rien d'ouvert | absent : grain année x département, ne relie pas le niveau d'un jour aux feux de ce jour | partiel : référentiel, `code_insee_du_departement` sépare 2A, 2B et le reste de la France | partiel : dénominateur, millésimes de 2007 à 2018 selon les départements (rubrique Période) | partiel : dénominateur, même règle partout, millésime 2018 (rubrique Période) |
+| Q9 Autres facteurs disponibles la veille | absent : niveau de synthèse, sans vent, humidité ni fréquentation | absent | absent | inconnu : aucun export ouvert | absent | absent | absent | absent |
+| Q10 L'été 2026 est-il exceptionnel ? | partiel : contient la saison 2026 (`date` jusqu'au 2026-10-05), mais mesure le danger et non les feux | partiel : 20 saisons de référence (2006-2025), mais 2026 non publiée avant 2027 | partiel : historique depuis 1973, arrêté à 2024 | inconnu : aucun export ouvert | partiel : "Feux de végétations" annuels par département de 2008 à 2024 (absents de 2010 à 2013), sans 2026 ; une intervention n'est pas un départ de feu | absent | absent | absent |
+
+Lecture dans l'autre sens : **Prométhée** reste "inconnu" sur toutes les questions (aucun export ouvert) ; **Interv. SDIS** ne sert qu'à Q10, en contexte ; **Admin Express**, **BD Forêt** et **CLC** ne répondent à aucune question seules, mais servent de référentiel ou de dénominateur.
+
+### Écarts avec la section 4
+
+| Question | Meilleure source | Grain | Période | Fraîcheur | Emprise |
+| -------- | ---------------- | ----- | ------- | --------- | ------- |
+| Q1 | BDIFF | 1 feu (point ou commune) -> 1 feu à la commune | = | saison 2026 incluse -> jusqu'à 2025 | = |
+| Q2 | BDIFF | = | = | saison 2026 incluse -> jusqu'à 2025 | = |
+| Q3 | BDIFF | date et heure de départ -> date et heure de première alerte | = | saison 2026 incluse -> jusqu'à 2025 | = |
+| Q4 | BDIFF | = (mais cause inconnue pour 47 % des feux) | = | = | = |
+| Q5 | MdF + BDIFF | jour x zone -> jour x département | toutes les saisons -> juin-septembre 2024 et 2025 en commun | saison 2026 incluse -> 2026 pour l'indice, 2025 pour les feux | = |
+| Q6 | MdF + BDIFF | jour x zone -> jour x département | toutes les saisons -> juin-septembre 2024 et 2025 en commun | saison 2026 incluse -> 2026 pour l'indice, 2025 pour les feux | = |
+| Q7 | MdF | jour d'activation avec coût -> jour x département sans coût | saison 2026 -> 2024 à 2026 | = | = |
+| Q8 | MdF | = | toutes les saisons -> 2024 à 2026 | = | = (2A et 2B vérifiés ; France entière non exportée pour les feux) |
+| Q9 | aucune | absent | absent | absent | absent |
+| Q10 | BDIFF | saison x département -> feu, agrégeable par saison | 20 ans et plus -> 20 ans (2006-2025) | saison 2026 incluse -> jusqu'à 2025 | Corse et France -> Corse-du-Sud (export 2A) |
+
+### Décisions
+
+Aucune question n'a de source "complet" : la saison 2026 manque partout pour les feux, et l'indice n'a que trois saisons. Chaque question reçoit donc une décision.
+
+| Question | Ce qui manque | Décision | Pourquoi | Ce que la décision coûte |
+|---|---|---|---|---|
+| Q1 | Saison 2026 ; localisation plus fine que la commune | approximer | La BDIFF couvre 20 saisons à la commune, ce qui suffit pour classer les zones ; Admin Express rattache chaque feu à sa commune et la BD Forêt permet de rapporter les feux à la surface boisée | Les évolutions de 2026 ne sont pas vues ; la commune ne distingue pas les massifs d'une même commune |
+| Q2 | Saison 2026 | approximer | 2006-2025 suffit pour juger de la stabilité des zones dans le temps | Un déplacement récent des zones de départ, en 2026, passerait inaperçu |
+| Q3 | Heure de départ réelle ; saison 2026 | approximer | La date de première alerte est le meilleur proxy disponible de l'heure de départ | Mesure en retard sur le départ réel, surtout pour les feux détectés tardivement (zones isolées, nuit) |
+| Q4 | Cause pour 47 % des feux | approximer | Analyser les causes connues en affichant toujours la part de causes inconnues | Biais si les causes inconnues ne sont pas réparties au hasard (manque possiblement MNAR, par exemple plus fréquent pour la malveillance) |
+| Q5 | Historique de l'indice (3 saisons) ; niveau par zone | approximer | Croiser `niveau_j1` et les feux BDIFF sur juin-septembre 2024-2025 ; élargir l'échantillon avec la Haute-Corse et le national (Q8) | 139 feux seulement pour le 2A : taux peu robustes ; un niveau départemental masque les écarts entre zones |
+| Q6 | Assez de grands feux sur la période commune | renoncer (reformuler) | Reformuler au seuil de 1 ha au lieu de 50 ha, car 18 feux de plus de 50 ha en 20 ans ne permettent aucune conclusion | La question ne porte plus sur les feux les plus destructeurs, mais sur des feux moyens |
+| Q7 | Coût journalier et contenu du dispositif renforcé | collecter | Le nombre de jours par seuil se calcule avec la MdF, mais seul le SDIS 2A connaît le coût ; à demander à la direction | Dépend d'une réponse du SDIS avant le 11 décembre ; sans elle, résultat exprimé en jours et non en euros |
+| Q8 | Feux de la France entière | approximer | Vérification faite pour la Haute-Corse : le 2B est présent dans la MdF (371 bulletins) et la BDIFF a été exportée pour le 2B (PR #52) ; la comparaison 2A / 2B est possible, la France entière reste à exporter | Temps d'extraction ; comparaison limitée à deux saisons communes ; CLC plutôt que BD Forêt comme dénominateur, pour une même règle partout |
+| Q9 | Données météo observées et de fréquentation | renoncer | Aucune source de l'inventaire ne les contient ; les ajouter n'est pas tenable avant le 11 décembre | Pas de règle de déclenchement combinée ; à rouvrir si le groupe ajoute les données climatologiques de Météo-France |
+| Q10 | Feux de la saison 2026 | approximer | Comparer le nombre de jours de niveaux 3 et 4 (`niveau_j1`) de 2026 à ceux de 2024 et 2025 (MdF), avec la BDIFF 2006-2025 comme référence pour les feux | Mesure le danger météo et non les feux réels ; seulement deux saisons de comparaison pour l'indice |
