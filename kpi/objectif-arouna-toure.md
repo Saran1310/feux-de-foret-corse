@@ -2,7 +2,7 @@
 
 - **Séance :** UE01.B, S1 (de la question analytique à l'objectif)
 - **Date :** 2026-11-18, mis à jour le 2026-11-19 après les deux relectures de Biolohf
-- **Données utilisées :** Météo des forêts (`niveau_j1`, saisons 2024 et 2025) et BDIFF (feux de forêt du 2A et du 2B, `Date de première alerte`). Profils : `docs/qualite/profil-mdf.md`, `docs/qualite/profil-bdiff.md`, `docs/qualite/profil-bdiff-2b.md`.
+- **Données utilisées :** Météo des forêts (`niveau_j1`, saisons 2024 et 2025) et BDIFF (feux de forêt du 2A et du 2B, `Date de première alerte`). Profils : `docs/qualite/profil-mdf.md`, `docs/qualite/profil-bdiff.md`, `docs/qualite/profil-bdiff-2b.md`. Tous les chiffres tirés des données sont recalculés par `src/calcul_diagnostic.py` (méthode décrite en tête du script ; le script vérifie aussi que chaque export BDIFF ne contient que des feux de forêt de type F) ; résultats dans `docs/qualite/calculs-diagnostic.md`. Les exemples de sensibilité (un jour de plus ou de moins) sont de simples calculs à partir de ces chiffres.
 
 ## Question analytique
 
@@ -62,7 +62,7 @@ Comment atteindre l'objectif sans faire avancer la stratégie ?
 
 - Échantillon très court : deux saisons, 17 jours de danger élevé seulement en Corse-du-Sud. Avec la Haute-Corse (9 jours de danger élevé, dont 3 sans feu), on monte à 26 jours, toujours fragile.
 - Le niveau 4 n'a jamais été atteint en Corse en 2024 et 2025 : aucun seuil à 4 ne peut être évalué.
-- Les feux de 2026 ne sont pas utilisés : l'année n'est pas terminée et la BDIFF ne la publie qu'en 2027.
+- Les feux de 2026 ne sont pas utilisés, conformément à la décision du groupe (ticket #61, décision D-009 de `docs/decisions.md`) : l'année n'est pas terminée et la BDIFF ne la publie qu'en 2027.
 - La BDIFF ne contient que les feux de forêt ; un départ de feu non enregistré n'est pas visible.
-- Le nombre de jours de danger élevé varie beaucoup d'un été à l'autre en Corse-du-Sud : 3 en 2024, 14 en 2025, 18 en 2026. Si l'été 2027 en compte peu, un seul jour pèsera lourd dans la mesure (1 jour sur 4 = 25 points). Le résultat de 2027 sera à lire avec son nombre de jours.
+- Le nombre de jours de danger élevé varie beaucoup d'un été à l'autre en Corse-du-Sud : 3 en 2024, 14 en 2025, 18 en 2026. Si l'été 2027 en compte peu, un seul jour pèsera lourd dans la mesure (par exemple, sur 4 jours, un jour représente 25 points). Le résultat de 2027 sera à lire avec son nombre de jours.
 - La mesure d'octobre 2027 dépend de la transmission des feux de la saison 2027 par le SDIS 2A. Sans cette transmission, l'objectif ne pourra être mesuré qu'en 2028, à la publication de la BDIFF.
