@@ -237,8 +237,11 @@ def controles_bdiff(df: pd.DataFrame) -> list[str]:
              f"egales a 0. Mediane {nombre(surf.median())} m2, maximum "
              f"{nombre(surf.max())} m2 ({nombre(surf.max() / 10000)} ha).")
     for seuil_ha in (1, 50):
-        r.append(f"- Feux de plus de {seuil_ha} ha : "
-                 f"{int((surf > seuil_ha * 10000).sum())}.")
+        m2 = seuil_ha * 10000
+        r.append(f"- Feux de plus de {seuil_ha} ha (strictement) : "
+                 f"{int((surf > m2).sum())} ; d'au moins {seuil_ha} ha : "
+                 f"{int((surf >= m2).sum())} ; dont exactement {seuil_ha} ha : "
+                 f"{int((surf == m2).sum())}.")
 
     saison = dates.dt.month.between(6, 9)
     r.append(f"- Feux hors juin-septembre : {int((~saison & dates.notna()).sum())}"
