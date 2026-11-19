@@ -1,8 +1,9 @@
 ﻿# Objectif - Biolohf Tchatchoua
 
 - **Séance :** UE01.B, S1 (de la question analytique à l'objectif)
+- **Ticket :** #72
 - **Question travaillée :** Q3 de la matrice du groupe
-- **Données utilisées :** Météo des forêts (`niveau_j1`, saisons 2024 et 2025) et BDIFF (feux du 2A, `Date de première alerte`), d'après les profils `docs/qualite/profil-mdf.md` et `docs/qualite/profil-bdiff.md`
+- **Données utilisées :** Météo des forêts (`niveau_j1`, saisons 2024 et 2025) et BDIFF (feux du 2A, `Date de première alerte`), profils `docs/qualite/profil-mdf.md` et `docs/qualite/profil-bdiff.md`. Les chiffres du croisement sont recalculés par `src/calcul_diagnostic.py` (PR #78) ; résultats dans `docs/qualite/calculs-diagnostic.md`.
 
 ## 1. Diagnostic : les quatre niveaux
 
@@ -22,7 +23,7 @@
 - **Confirmée si :** le nombre de jours déclenchés par le seuil actuel dépasse le nombre de jours que le budget finance.
 - **Infirmée si :** il est inférieur ou égal.
 
-**Verdict : les données ne permettent pas de trancher.** Le seuil actuel et le budget ne sont connus d'aucune source (décision 3 de la matrice). C'est une limite de l'objectif : [N] reste à fixer avec le SDIS 2A.
+**Verdict : les données ne permettent pas de trancher.** Le seuil actuel et le budget ne sont connus d'aucune source (décision 3 de la matrice). C'est une limite de l'objectif : [92] reste à fixer avec le SDIS 2A.
 
 ## 3. Question analytique et décision
 
@@ -45,7 +46,7 @@
 |---|---|
 | Spécifique | Un seuil de `niveau_j1` (niveau 2 ou 3 d'après les saisons observées) pour le dispositif renforcé en Corse-du-Sud. Un feu est couvert s'il part un jour où `niveau_j1`, rapporté au lendemain de sa publication, est supérieur ou égal au seuil. |
 | Mesurable | Couverture = feux du 2A survenus un jour déclenché / feux du 2A de juin à septembre. Jours déclenchés = nombre de jours par été où `niveau_j1` atteint le seuil. Les deux se calculent en croisant la Météo des forêts et la date de première alerte des feux. |
-| Atteignable | [80 %] et [92] jours ne sont pas fixés seuls : ils le sont avec le SDIS 2A, une fois le budget connu. Les niveaux de l'indice étant peu nombreux, il n'existe pas de seuil intermédiaire : toute cible de couverture entre 10 % et 89 % impose le niveau 2, donc environ 92 jours par été. |
+| Atteignable | [80 %] et [92] jours ne sont pas fixés seuls : ils le sont avec le SDIS 2A, une fois le budget connu. Les niveaux de l'indice étant peu nombreux, il n'existe pas de seuil intermédiaire : toute cible de couverture au-dessus de 9,4 % et jusqu'à 89,9 % impose le niveau 2. Ce niveau déclenche environ 92 jours par été en moyenne, mais 71 jours en 2024, 112 en 2025 et 128 en 2026 (indice seul) : la limite de [92] jours aurait été dépassée deux étés sur trois. Avec l'indice seul, l'objectif n'est donc pas atteignable chaque été ; il faut soit une limite de jours plus haute, soit un critère de déclenchement en plus de l'indice, à fixer avec le SDIS 2A. |
 | Réaliste | Les deux conditions se bloquent mutuellement : sans condition sur le nombre de jours, on déclencherait tous les jours ; sans condition de couverture, on choisirait le niveau 4 (zéro jour). Si le budget est inférieur à environ 92 jours, l'objectif n'est pas atteignable par le seuil seul. |
 | Temporel | D'ici la fin de l'été 2027 (fin septembre 2027). Mesure en octobre 2027 avec les feux transmis par le SDIS 2A, à confirmer avec la BDIFF quand elle publiera 2027 (en 2028). |
 
@@ -55,11 +56,11 @@ Mesurée sur les deux saisons communes aux deux sources (4 juin au 1er octobre 2
 
 | Seuil de `niveau_j1` | Jours déclenchés (2 saisons) | Par été | Part des jours | Feux couverts | Part des feux |
 |---|---|---|---|---|---|
-| niveau 2 ou plus | 183 | environ 91,5 | 76,3 % | 125 | 89,9 % |
+| niveau 2 ou plus | 183 | environ 91,5 (71 en 2024, 112 en 2025) | 76,3 % | 125 | 89,9 % (81,6 % en 2024, 100 % en 2025) |
 | niveau 3 ou plus | 17 | environ 8,5 | 7,1 % | 13 | 9,4 % |
 | niveau 4 | 0 | 0 | 0 % | 0 | 0 % |
 
-Ces valeurs sont calculées à partir des niveaux 1 à 4 (57, 166, 17 et 0 jours ; 14, 112, 13 et 0 feux) du profil de la Météo des forêts croisé avec la BDIFF. À contrôler dans `profil-mdf.md` et `profil-bdiff.md`.
+Ces valeurs sont calculées à partir des niveaux 1 à 4 (57, 166, 17 et 0 jours ; 14, 112, 13 et 0 feux) de la Météo des forêts croisée avec la BDIFF, recalculés par `src/calcul_diagnostic.py` (`docs/qualite/calculs-diagnostic.md`). En 2026, le niveau 2 ou plus aurait déclenché 128 jours (indice seul, feux de 2026 exclus).
 
 Valeurs à mesurer, non disponibles aujourd'hui : le seuil réellement appliqué par le SDIS 2A, le nombre de jours finançables par été et le coût par jour du dispositif.
 
@@ -78,5 +79,6 @@ Comment atteindre l'objectif sans faire avancer la stratégie ?
 - Le niveau 4 n'a jamais été atteint en Corse-du-Sud en 2024 et 2025 : aucun seuil au niveau 4 ne peut être évalué.
 - Seuls les feux de juin à septembre sont couverts : 46,5 % des feux du 2A partent hors de cette période, où la Météo des forêts n'est pas publiée.
 - Les feux de 2026 sont exclus (décision du groupe, ticket #61).
-- Le seuil actuel et le budget sont inconnus : [N] et [C %] sont des valeurs provisoires.
+- Le seuil actuel et le budget sont inconnus : [80 %] et [92] sont des valeurs provisoires.
+- Le nombre de jours déclenchés varie beaucoup d'un été à l'autre (71, 112 et 128 jours au niveau 2 ou plus en 2024, 2025 et 2026) : une limite fixée sur la moyenne est dépassée les étés chauds.
 - La BDIFF ne contient que les feux enregistrés : un départ de feu non enregistré n'est pas visible.
