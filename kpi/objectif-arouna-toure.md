@@ -1,7 +1,7 @@
 # Objectif : Arouna Touré
 
 - **Séance :** UE01.B, S1 (de la question analytique à l'objectif)
-- **Date :** 2026-11-18, mis à jour le 2026-11-19 après la relecture de Biolohf
+- **Date :** 2026-11-18, mis à jour le 2026-11-19 après les deux relectures de Biolohf
 - **Données utilisées :** Météo des forêts (`niveau_j1`, saisons 2024 et 2025) et BDIFF (feux de forêt du 2A et du 2B, `Date de première alerte`). Profils : `docs/qualite/profil-mdf.md`, `docs/qualite/profil-bdiff.md`, `docs/qualite/profil-bdiff-2b.md`.
 
 ## Question analytique
@@ -18,7 +18,7 @@
 |---|---|---|
 | Action | Recalibrer le seuil de déclenchement du dispositif renforcé. | C'est ce que l'on fait, pas le résultat attendu : rien ne dit quand ce sera réussi. |
 | Objectif | Réduire les jours de dispositif renforcé déclenchés sans qu'aucun feu ne parte. | Le résultat est nommé, mais sans valeur de départ, sans cible, sans échéance, et sans garde-fou : on peut l'atteindre en ne déclenchant plus jamais. |
-| Objectif SMART | Sur la saison 2027 (juin à septembre), faire passer de 41,2 % à 33 % (valeur provisoire, à valider avec le SDIS 2A) la part des jours de déclenchement du dispositif renforcé sans aucun départ de feu en Corse-du-Sud, sans augmenter la part des feux qui partent hors des jours de déclenchement, aujourd'hui de 90,6 % avec un déclenchement au niveau 3. Mesure en octobre 2027 sur les feux saisis par le SDIS 2A, confirmée en 2028 par la BDIFF. | |
+| Objectif SMART | Sur la saison 2027 (juin à septembre), faire passer de 41,2 % à 33 % (valeur provisoire, à valider avec le SDIS 2A) la part des jours de déclenchement du dispositif renforcé sans aucun départ de feu en Corse-du-Sud, sans que la part des feux qui partent hors des jours de déclenchement dépasse 90,6 % (sa valeur avec un déclenchement au niveau 3). Mesure en octobre 2027 sur les feux saisis par le SDIS 2A, confirmée en 2028 par la BDIFF. | |
 
 ## L'objectif SMART, critère par critère
 
@@ -26,8 +26,8 @@
 |---|---|
 | Spécifique | Les jours de déclenchement du dispositif renforcé en Corse-du-Sud (2A), et parmi eux ceux où aucun feu de forêt n'est enregistré. La référence est calculée pour un déclenchement au niveau 3 (prévision J+1 de la Météo des forêts supérieure ou égale à 3), le seuil actuel du SDIS n'étant pas connu. |
 | Mesurable | La part passe de 41,2 % à 33 %. Elle se calcule en croisant les jours de déclenchement et la date de première alerte des feux. La BDIFF ne publiera l'année 2027 qu'en 2028 : la mesure de fin de saison se fait donc sur les feux saisis par le SDIS 2A (à demander, comme le coût du dispositif, décision 3 de la matrice), puis elle est confirmée avec la BDIFF en 2028. |
-| Atteignable | 33 % est la valeur observée en Haute-Corse avec le même indice et le même seuil (3 jours sans feu sur 9 jours de danger élevé, étés 2024-2025) : un département voisin l'atteint déjà. Elle reste provisoire et doit être validée avec la direction du SDIS 2A une fois la situation de référence présentée. |
-| Réaliste | La condition "sans augmenter la part des feux hors des jours de déclenchement" empêche de gagner en relevant simplement le seuil : au niveau 4, aucun jour ne serait déclenché en 2024 et 2025, et cette part passerait de 90,6 % à 100 %. |
+| Atteignable | 33 % est la valeur observée en Haute-Corse avec le même indice et le même seuil (3 jours sans feu sur 9 jours de danger élevé, étés 2024-2025) : un département voisin l'atteint déjà. Cette valeur repose toutefois sur 9 jours seulement : un jour de plus ou de moins la fait varier d'environ 11 points (2 jours sur 9 = 22,2 %, 4 jours sur 9 = 44,4 %). Elle reste provisoire et doit être validée avec la direction du SDIS 2A une fois la situation de référence présentée. |
+| Réaliste | La condition "sans que la part des feux hors des jours de déclenchement dépasse 90,6 %" empêche de gagner en relevant simplement le seuil : au niveau 4, aucun jour ne serait déclenché en 2024 et 2025, et cette part passerait de 90,6 % à 100 %. |
 | Temporel | Saison 2027 (juin à septembre), mesurée en octobre 2027 avec les données du SDIS 2A ; confirmation avec la BDIFF lors de sa publication en 2028. |
 
 ## Situation de référence
@@ -64,3 +64,4 @@ Comment atteindre l'objectif sans faire avancer la stratégie ?
 - Le niveau 4 n'a jamais été atteint en Corse en 2024 et 2025 : aucun seuil à 4 ne peut être évalué.
 - Les feux de 2026 ne sont pas utilisés : l'année n'est pas terminée et la BDIFF ne la publie qu'en 2027.
 - La BDIFF ne contient que les feux de forêt ; un départ de feu non enregistré n'est pas visible.
+- La mesure d'octobre 2027 dépend de la transmission des feux de la saison 2027 par le SDIS 2A. Sans cette transmission, l'objectif ne pourra être mesuré qu'en 2028, à la publication de la BDIFF.
