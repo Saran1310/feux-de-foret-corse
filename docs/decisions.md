@@ -128,8 +128,8 @@ Dernière mise à jour : 2026-11-19 (D-009 à D-013 ajoutées, D-009 mise à jou
 - **Options envisagées :** A. collecter les feux de 2026 auprès du SDIS ; B. approximer avec la BDIFF 2006-2025, sans 2026 ; C. renoncer à 2026 (position d'Ahmed PHILIPPE dans sa relecture de la pull request #46).
 - **Décision :** option B, **approximer**. La BDIFF 2006-2025 sert de base, les feux de 2026 sont exclus. L'exclusion ne concerne que les feux : la saison 2026 de la Météo des forêts est complète (bulletins du 28 mai au 5 octobre 2026) et reste utilisée.
 - **Raison :** l'année 2026 n'est pas terminée, et 46,5 % des feux du 2A ont lieu hors de juin-septembre (fiche BDIFF) : il manque donc les feux d'octobre à décembre. Des chiffres transmis par le SDIS seraient provisoires et ne se comparent pas aux 20 années complètes : même collectés, ils ne combleraient pas le manque. Ahmed y voit un renoncement à 2026. Nous retenons « approximer » parce que Q1 reçoit une réponse, approchée par 2006-2025 ; seules les données de 2026 sont écartées.
-- **Conséquences :** les évolutions de 2026 ne sont pas visibles, ce qu'il faudra écrire dans la restitution. Les sections 5 individuelles sont mises en accord avec cette décision (ticket #61) : la matrice (#64), la section de Saran DIABAGATE (#62) et celle de Biolohf TCHATCHOUA (#59) sont fusionnées ; celle d'Ahmed PHILIPPE (#48) est en cours de relecture.
-- **Liens :** ticket #61, pull requests #46, #48, #59, #62 et #64, `docs/sources/matrice.md` (décision 1)
+- **Conséquences :** les évolutions de 2026 ne sont pas visibles, ce qu'il faudra écrire dans la restitution. Les sections 5 individuelles sont mises en accord avec cette décision (ticket #61) : la matrice (#64) et les sections 5 de Saran DIABAGATE (#62), d'Arouna TOURE (#49), de Biolohf TCHATCHOUA (#59) et d'Ahmed PHILIPPE (#48) sont fusionnées.
+- **Liens :** ticket #61, pull requests #46, #48, #49, #59, #62 et #64, `docs/sources/matrice.md` (décision 1)
 
 ### D-010 · Seuil de déclenchement : approximer avec deux saisons communes
 - **Date :** 2026-11-18
