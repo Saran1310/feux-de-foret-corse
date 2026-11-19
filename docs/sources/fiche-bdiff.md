@@ -35,7 +35,7 @@
 - **46,5 % des feux de Corse-du-Sud partent hors de la saison de la Météo des forêts** (2 185 feux sur 4 694 entre octobre et mai). Près de la moitié des départs n'ont donc aucun niveau de danger associé : c'est une limite majeure pour la question du seuil, et une piste d'explication des "feux partis quand l'indice était au plus bas".
 - **La cause est inconnue pour 47 % des feux** (2 212 sur 4 694). Parmi les causes connues, "Involontaire (particulier)" arrive en tête (1 003), devant "Malveillance" (767).
 - **Les feux sont concentrés** : Ajaccio (327), Porto-Vecchio (317) et Sartène (265) totalisent près de 20 % des départs sur 20 ans.
-- **Peu de grands feux** : la surface médiane est de 200 m2 ; 472 feux dépassent 1 ha et 18 dépassent 50 ha.
+- **Peu de grands feux** : la surface médiane est de 200 m2 ; 472 feux atteignent au moins 1 ha (surface supérieure ou égale à 10 000 m2), dont 89 enregistrés à exactement 1 ha ; 383 dépassent strictement 1 ha. 18 feux dépassent 50 ha (aucun n'est enregistré à exactement 50 ha). Les surfaces sont souvent arrondies (412 feux à exactement 50 m2, 391 à 100 m2, 89 à 1 ha) : un seuil de surface doit toujours préciser s'il est strict ou non. Tous ces chiffres figurent dans le profil `docs/qualite/profil-bdiff.md` (contrôles propres à la source et valeurs les plus fréquentes de `Surface parcourue (m2)`).
 - **Recouvrement avec la Météo des forêts très faible** : seulement 139 feux en juin-septembre 2024 et 2025, les deux saisons communes aux deux sources.
 - **La saison 2026 manque** : elle ne sera publiée qu'en 2027, après la date de rendu.
 - **La licence n'est pas ouverte** : l'exigence d'intégrité ("aucune modification") est à discuter avec l'enseignante, puisque le pipeline transforme les données.

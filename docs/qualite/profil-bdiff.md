@@ -1,6 +1,6 @@
 # Profil de la source : BDIFF
 
-- **Généré par :** `src/profilage.py` le 2026-11-18
+- **Généré par :** `src/profilage.py` le 2026-11-19
 - **Fichiers lus :** `data/raw/bdiff_2A_2006_2025.csv`
 - **Lignes :** 4694
 - **Colonnes :** 24
@@ -52,8 +52,8 @@ Ce rapport décrit les données telles qu'elles sont. Il ne décide rien : les r
 - `Année` differente de l'annee de la date d'alerte : 0 lignes.
 - Dates d'alerte dans le futur : 0.
 - `Surface parcourue (m2)` : 0 vides, 0 negatives, 0 egales a 0. Mediane 200 m2, maximum 32 210 000 m2 (3221 ha).
-- Feux de plus de 1 ha : 383.
-- Feux de plus de 50 ha : 18.
+- Feux de plus de 1 ha (strictement) : 383 ; d'au moins 1 ha : 472 ; dont exactement 1 ha : 89.
+- Feux de plus de 50 ha (strictement) : 18 ; d'au moins 50 ha : 18 ; dont exactement 50 ha : 0.
 - Feux hors juin-septembre : 2185 (46.5 %).
 - Annees sans aucun feu entre 2006 et 2025 : aucune.
 - Feux par annee : 2006 : 407, 2007 : 420, 2008 : 219, 2009 : 378, 2010 : 275, 2011 : 354, 2012 : 245, 2013 : 192, 2014 : 219, 2015 : 300, 2016 : 247, 2017 : 318, 2018 : 121, 2019 : 217, 2020 : 144, 2021 : 164, 2022 : 184, 2023 : 86, 2024 : 111, 2025 : 93.
