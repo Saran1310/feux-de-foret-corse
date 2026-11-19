@@ -165,6 +165,24 @@ def rapport_seuil(j: pd.DataFrame, nom: str, mdf_dep: pd.DataFrame,
                   .groupby(mdf_dep["jour"].dt.year).size())
     r += ["", "- Jours de danger eleve par saison (toutes saisons de l'indice) : "
           + ", ".join(f"{a} : {n}" for a, n in par_saison.items()), ""]
+
+    r += ["Detail par saison (feux et jours declenches) :", "",
+          "| Seuil | Saison | Jours declenches | Feux couverts | Part des feux couverts |",
+          "|---|---|---|---|---|"]
+    for niveau in (2, 3):
+        for annee in sorted(mdf_dep["jour"].dt.year.unique()):
+            jours = int(((mdf_dep["jour"].dt.year == annee)
+                         & (mdf_dep["n1"] >= niveau)).sum())
+            saison = j[j["jour"].dt.year == annee]
+            if len(saison):
+                couverts = int(saison.loc[saison["n1"] >= niveau, "feux"].sum())
+                total = int(saison["feux"].sum())
+                r.append(f"| niveau_j1 >= {niveau} | {annee} | {jours} | "
+                         f"{couverts} sur {total} | {pct(couverts, total)} |")
+            else:
+                r.append(f"| niveau_j1 >= {niveau} | {annee} | {jours} | "
+                         "feux exclus (ticket #61) | sans objet |")
+    r.append("")
     return r
 
 

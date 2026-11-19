@@ -30,6 +30,17 @@ Genere par `src/calcul_diagnostic.py` a partir des fichiers bruts de `data/raw/`
 
 - Jours de danger eleve par saison (toutes saisons de l'indice) : 2024 : 3, 2025 : 14, 2026 : 18
 
+Detail par saison (feux et jours declenches) :
+
+| Seuil | Saison | Jours declenches | Feux couverts | Part des feux couverts |
+|---|---|---|---|---|
+| niveau_j1 >= 2 | 2024 | 71 | 62 sur 76 | 81.6 % |
+| niveau_j1 >= 2 | 2025 | 112 | 63 sur 63 | 100.0 % |
+| niveau_j1 >= 2 | 2026 | 128 | feux exclus (ticket #61) | sans objet |
+| niveau_j1 >= 3 | 2024 | 3 | 4 sur 76 | 5.3 % |
+| niveau_j1 >= 3 | 2025 | 14 | 9 sur 63 | 14.3 % |
+| niveau_j1 >= 3 | 2026 | 18 | feux exclus (ticket #61) | sans objet |
+
 ### Haute-Corse (2B)
 
 - Jours vises : 240 (du 2024-06-04 au 2025-10-01, saisons 2024 et 2025)
@@ -55,6 +66,17 @@ Genere par `src/calcul_diagnostic.py` a partir des fichiers bruts de `data/raw/`
 | niveau_j1 >= 4 | 0 | 0 (sans objet) | 87 (100.0 %) |
 
 - Jours de danger eleve par saison (toutes saisons de l'indice) : 2024 : 1, 2025 : 8, 2026 : 9
+
+Detail par saison (feux et jours declenches) :
+
+| Seuil | Saison | Jours declenches | Feux couverts | Part des feux couverts |
+|---|---|---|---|---|
+| niveau_j1 >= 2 | 2024 | 67 | 25 sur 30 | 83.3 % |
+| niveau_j1 >= 2 | 2025 | 102 | 54 sur 57 | 94.7 % |
+| niveau_j1 >= 2 | 2026 | 119 | feux exclus (ticket #61) | sans objet |
+| niveau_j1 >= 3 | 2024 | 1 | 1 sur 30 | 3.3 % |
+| niveau_j1 >= 3 | 2025 | 8 | 7 sur 57 | 12.3 % |
+| niveau_j1 >= 3 | 2026 | 9 | feux exclus (ticket #61) | sans objet |
 
 - Jours de danger eleve, Corse-du-Sud et Haute-Corse ensemble (saisons communes) : 26
 
