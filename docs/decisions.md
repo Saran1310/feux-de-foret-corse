@@ -1,8 +1,8 @@
-# Journal des décisions — Corse
+# Journal des décisions (Corse)
 
 Une entrée par décision, la plus récente en bas. On ne supprime jamais une entrée : si une décision change, on ajoute une nouvelle entrée qui remplace l'ancienne et on l'indique.
 
-Dernière mise à jour : 2026-11-18 (D-009 à D-013 ajoutées)
+Dernière mise à jour : 2026-11-19 (D-009 à D-013 ajoutées, D-009 mise à jour)
 
 ## Modèle d'entrée
 
@@ -86,7 +86,7 @@ Dernière mise à jour : 2026-11-18 (D-009 à D-013 ajoutées)
   - Ahmed PHILIPPE : BD Forêt et Corine Land Cover (ticket #28) ; relecture prévue par Biolohf TCHATCHOUA.
   - Saran DIABAGATE : Admin Express (ticket #29) ; relecture prévue par Biolohf TCHATCHOUA.
   - Inventaire des sources (ticket #19) : rédigé par Saran DIABAGATE et relu par Biolohf TCHATCHOUA.
-  - **Statut des relectures :** les relectures prévues ne sont pas considérées comme des validations tant qu'elles n'ont pas été effectivement réalisées et confirmées.
+  - **Statut des relectures :** une relecture prévue ne vaut validation qu'une fois faite et confirmée.
 - **Raison :** Tchatchoua, responsable des sources, prend les deux sources de feux. Ahmed, côté qualité, prend le contexte forestier. Admin Express est la source la plus simple : elle donne la clé de jointure (communes et départements), ce qui laisse du temps à la cheffe de projet.
 - **Conséquences :** une valeur qu'on n'a pas pu vérifier s'écrit « non vérifiée », avec la raison ; une valeur supposée compte comme une erreur. Une PR qui contient un fichier d'un autre ticket est corrigée avant d'être fusionnée.
 - **Liens :** tickets #19, #26, #27, #28, #29 ; pull requests #30, #31, #34
@@ -98,7 +98,7 @@ Dernière mise à jour : 2026-11-18 (D-009 à D-013 ajoutées)
 - **Options envisagées :** laisser les analyses individuelles sur leurs branches, ou les fusionner dans `main`.
 - **Décision :** fusionner les quatre analyses individuelles dans `main` (`docs/analyse/commande-prenom-nom.md`), par merge commit, après relecture par un autre membre. L'analyse de groupe (`commande-groupe.md`) est un fichier séparé.
 - **Raison :** les analyses individuelles montrent qui a fait quoi ; l'analyse de groupe est le résultat commun.
-- **Conséquences :** les analyses individuelles sont considérées comme finalisées après leur fusion. Toute correction ultérieure devra passer par un ticket et une pull request, afin de conserver la trace de la modification dans l'historique du dépôt.
+- **Conséquences :** les analyses individuelles sont considérées comme finalisées après leur fusion. Toute correction ultérieure devra passer par un ticket et une pull request, pour garder la trace dans l'historique du dépôt.
 - **Liens :** tickets #15 à #18 ; pull requests #1, #24, #25, #35
 
 ### D-007 · Millésime retenu pour CORINE Land Cover
@@ -117,7 +117,7 @@ Dernière mise à jour : 2026-11-18 (D-009 à D-013 ajoutées)
 - **Contexte :** CORINE Land Cover et la BD Forêt mesurent toutes deux la surface boisée, avec des règles différentes (maille de 25 ha contre 0,5 ha, millésime 2018 contre 2007-2018 selon le département).
 - **Options envisagées :** A. additionner ou fusionner les deux ; B. retenir une seule source par usage.
 - **Décision :** option B. Pour la surface boisée par commune (Q1), la **BD Forêt** ; pour comparer les départements (Q4), **CORINE Land Cover**, homogène dans toute la France. Les deux ne sont jamais additionnées.
-- **Raison :** additionner deux mesures de la même chose compte deux fois les mêmes surfaces ; les mélanger produit un chiffre qui ne correspond à aucune définition.
+- **Raison :** additionner deux mesures de la même chose compte deux fois les mêmes surfaces, et le total ne correspond à aucune des deux définitions.
 - **Conséquences :** chaque indicateur de surface cite sa source ; un indicateur communal et un indicateur départemental de surface boisée ne sont pas comparables entre eux.
 - **Liens :** tickets #28 et #43, pull request #40, `docs/sources/fiche-bd-foret.md`, `docs/sources/fiche-corine-land-cover.md`
 
@@ -128,15 +128,15 @@ Dernière mise à jour : 2026-11-18 (D-009 à D-013 ajoutées)
 - **Options envisagées :** A. collecter les feux de 2026 auprès du SDIS ; B. approximer avec la BDIFF 2006-2025, sans 2026 ; C. renoncer à 2026 (position d'Ahmed PHILIPPE dans sa relecture de la pull request #46).
 - **Décision :** option B, **approximer**. La BDIFF 2006-2025 sert de base, les feux de 2026 sont exclus. L'exclusion ne concerne que les feux : la saison 2026 de la Météo des forêts est complète (bulletins du 28 mai au 5 octobre 2026) et reste utilisée.
 - **Raison :** l'année 2026 n'est pas terminée, et 46,5 % des feux du 2A ont lieu hors de juin-septembre (fiche BDIFF) : il manque donc les feux d'octobre à décembre. Des chiffres transmis par le SDIS seraient provisoires et ne se comparent pas aux 20 années complètes : même collectés, ils ne combleraient pas le manque. Ahmed y voit un renoncement à 2026. Nous retenons « approximer » parce que Q1 reçoit une réponse, approchée par 2006-2025 ; seules les données de 2026 sont écartées.
-- **Conséquences :** les évolutions de 2026 ne sont pas visibles, ce qu'il faudra écrire dans la restitution. Les sections 5 individuelles sont mises en accord avec cette décision (ticket #61).
-- **Liens :** ticket #61, pull requests #46 et #64, `docs/sources/matrice.md` (décision 1)
+- **Conséquences :** les évolutions de 2026 ne sont pas visibles, ce qu'il faudra écrire dans la restitution. Les sections 5 individuelles sont mises en accord avec cette décision (ticket #61) : la matrice (#64), la section de Saran DIABAGATE (#62) et celle de Biolohf TCHATCHOUA (#59) sont fusionnées ; celle d'Ahmed PHILIPPE (#48) est en cours de relecture.
+- **Liens :** ticket #61, pull requests #46, #48, #59, #62 et #64, `docs/sources/matrice.md` (décision 1)
 
 ### D-010 · Seuil de déclenchement : approximer avec deux saisons communes
 - **Date :** 2026-11-18
 - **Décidé par :** Biolohf TCHATCHOUA (matrice, pull request #46), relue par Arouna TOURE
 - **Contexte :** la question Q2 demande la part des jours avec au moins un feu à chaque niveau de la Météo des forêts. L'historique des niveaux couvre trois saisons de juin à septembre (2024, 2025, 2026), et seuls 139 feux du 2A tombent dans la période commune à la BDIFF (juin-septembre 2024 et 2025).
 - **Options envisagées :** collecter un historique plus long (aucune source ouverte identifiée) ; approximer avec la période commune ; renoncer à la question.
-- **Décision :** **approximer** : croiser `niveau_j1` (prévision J+1) avec les feux de la BDIFF sur juin-septembre 2024 et 2025, et élargir l'échantillon grâce à Q4.
+- **Décision :** **approximer** : croiser `niveau_j1` (prévision J+1) avec les feux de la BDIFF sur juin-septembre 2024 et 2025, et compléter avec le 2B (Q4).
 - **Raison :** c'est le seul croisement possible avec les sources ouvertes. On prend `niveau_j1` parce que c'est la prévision qui déclenche le dispositif (voir la question ouverte Q-4).
 - **Conséquences :** avec 139 feux pour le 2A, les taux sont fragiles : le résultat sera présenté comme une tendance exploratoire, pas comme un seuil opérationnel. Les 46,5 % de feux hors saison restent hors du champ de l'indice. La colonne `date` de la Météo des forêts est une date de publication : il faut associer chaque feu au bulletin publié la veille (non encore vérifié).
 - **Liens :** ticket #20, pull request #46, `docs/sources/matrice.md` (décision 2), `docs/sources/fiche-meteo-des-forets.md`
@@ -167,7 +167,7 @@ Dernière mise à jour : 2026-11-18 (D-009 à D-013 ajoutées)
 - **Contexte :** deux sources décrivent les feux du 2A : la BDIFF et le jeu de la DDT 2A, qui reprend la BDIFF depuis 2023.
 - **Options envisagées :** BDIFF seule ; DDT 2A seule ; les deux.
 - **Décision :** la **BDIFF** est la source de référence pour les feux (Q1 à Q4). La DDT 2A est gardée en complément pour la localisation.
-- **Raison :** la BDIFF est la seule base nationale vérifiée, avec la date et la commune de chaque feu.
+- **Raison :** la BDIFF est la seule base nationale documentée, avec la date et la commune de chaque feu (la couverture nationale n'est pas encore vérifiée : l'export de la France entière n'est pas fait).
 - **Conséquences :** en cas de désaccord depuis 2023, la BDIFF prévaut. La licence de la BDIFF n'est pas ouverte (« aucune modification ni altération ») : voir la question ouverte Q-7. Le dénominateur de surface boisée suit D-007 et D-008.
 - **Liens :** ticket #20, pull request #46, `docs/sources/matrice.md` (décisions 5 et 6), `docs/sources/fiche-bdiff.md`
 
