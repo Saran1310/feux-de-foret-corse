@@ -134,11 +134,11 @@ Dernière mise à jour : 2026-11-19 (D-009 à D-013 ajoutées, D-009 mise à jou
 ### D-010 · Seuil de déclenchement : approximer avec deux saisons communes
 - **Date :** 2026-11-18
 - **Décidé par :** Biolohf TCHATCHOUA (matrice, pull request #46), relue par Arouna TOURE
-- **Contexte :** la question Q2 demande la part des jours avec au moins un feu à chaque niveau de la Météo des forêts. L'historique des niveaux couvre trois saisons de juin à septembre (2024, 2025, 2026), et seuls 139 feux du 2A tombent dans la période commune à la BDIFF (juin-septembre 2024 et 2025).
+- **Contexte :** la question Q2 demande la part des jours avec au moins un feu à chaque niveau de la Météo des forêts. L'historique des niveaux couvre trois saisons : juin-septembre 2024 et 2025, 28 mai-5 octobre 2026, et seuls 139 feux du 2A tombent dans la période commune à la BDIFF (juin-septembre 2024 et 2025).
 - **Options envisagées :** collecter un historique plus long (aucune source ouverte identifiée) ; approximer avec la période commune ; renoncer à la question.
 - **Décision :** **approximer** : croiser `niveau_j1` (prévision J+1) avec les feux de la BDIFF sur juin-septembre 2024 et 2025, et compléter avec le 2B (Q4).
-- **Raison :** c'est le seul croisement possible avec les sources ouvertes. On prend `niveau_j1` parce que c'est la prévision qui déclenche le dispositif (voir la question ouverte Q-4).
-- **Conséquences :** avec 139 feux pour le 2A, les taux sont fragiles : le résultat sera présenté comme une tendance exploratoire, pas comme un seuil opérationnel. Les 46,5 % de feux hors saison restent hors du champ de l'indice. La colonne `date` de la Météo des forêts est une date de publication : il faut associer chaque feu au bulletin publié la veille (non encore vérifié).
+- **Raison :** c'est le seul croisement possible avec les sources ouvertes. On prend `niveau_j1` parce que c'est la prévision qui déclenche le dispositif. Ce choix est provisoire tant que la question ouverte Q-4 (J+1 ou J+2) n'est pas tranchée par le groupe.
+- **Conséquences :** avec 139 feux pour le 2A, les taux sont fragiles : le résultat sera présenté comme une tendance exploratoire, pas comme un seuil opérationnel. Les 46,5 % de feux hors saison restent hors du champ de l'indice. La colonne `date` de la Météo des forêts est une date de publication : il faut associer chaque feu au bulletin publié la veille (décalage documenté dans la fiche Météo des forêts, points 3 et 5).
 - **Liens :** ticket #20, pull request #46, `docs/sources/matrice.md` (décision 2), `docs/sources/fiche-meteo-des-forets.md`
 
 ### D-011 · Coût journalier et seuil actuel : à demander au SDIS 2A
@@ -186,7 +186,7 @@ Ces entrées sont des propositions de la cheffe de projet, pas encore validées 
 | Analyses individuelles dans `main` | D-006 | Les 4 membres | À confirmer |
 | Millésime 2018 de CORINE Land Cover | D-007 | Les 4 membres | À confirmer (ticket #43) |
 | Ne pas additionner CORINE Land Cover et BD Forêt | D-008 | Les 4 membres | À confirmer (ticket #43) |
-| Feux de 2026 exclus | D-009 | Ahmed PHILIPPE (a proposé « renoncer ») | À confirmer (ticket #61) |
+| Feux de 2026 exclus | D-009 | Ahmed PHILIPPE (avait proposé « renoncer » ; sa section 5 est alignée sur « approximer », commit 0725b14) | À confirmer (ticket #61) |
 | Décisions de la matrice : seuil, coût, 2B, source de référence | D-010 à D-013 | Les 4 membres | À confirmer (ticket #56) |
 
 ---
@@ -200,7 +200,7 @@ Chaque décision prise ici devra aussi mettre à jour la fiche du glossaire conc
 | Q-1 | Que veut dire « danger élevé » : le niveau 3 (orange) seul, ou les niveaux 3 et 4 ? | Tchatchoua, Arouna, Ahmed | Danger élevé |
 | Q-2 | L'IFM mesure-t-il un danger météo (Arouna) ou un risque d'éclosion (Ahmed) ? | Arouna, Ahmed | IFM, Danger et risque |
 | Q-3 | Qu'appelle-t-on « un feu » : départ de feu, feu de forêt, feu de végétation, intervention ? Quel seuil de surface ? | Saran, Arouna, Tchatchoua | Feu de forêt, Départ de feu |
-| Q-4 | Quelle prévision utiliser : J+1 ou J+2 ? | Arouna | Météo des forêts |
+| Q-4 | Quelle prévision utiliser : J+1 ou J+2 ? (J+1 retenu provisoirement dans D-010) | Arouna | Météo des forêts |
 | Q-5 | Le périmètre du SDIS 2A est-il le même que celui du département 2A ? | Tchatchoua | Département, SDIS 2A |
 | Q-6 | Quelle période de référence pour comparer les saisons (archives depuis juin 2024, feux depuis 2006 ou 1973) ? | Saran, Arouna | Météo des forêts, BDIFF, Prométhée |
 | Q-7 | La licence de la BDIFF (« aucune modification, ni altération ») permet-elle de transformer les données dans le pipeline ? À demander à l'enseignante. | Fiche BDIFF | BDIFF |
