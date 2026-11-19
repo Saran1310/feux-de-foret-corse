@@ -1,6 +1,6 @@
 # Glossaire — Corse
 
-Dernière mise à jour : 2026-11-17
+Dernière mise à jour : 2026-11-18
 
 ## BDIFF
 
@@ -181,6 +181,18 @@ Dernière mise à jour : 2026-11-17
 - **Statut :** à vérifier
 - **Origine de la définition :** Analyses individuelles d'Arouna, d'Ahmed et de Saran. À confirmer dans la documentation de Météo-France.
 - **Ajouté par :** Arouna TOURE, Ahmed PHILIPPE et Saran DIABAGATE, 2026-11-17
+
+## Maquis
+
+- **Définition :** Végétation basse et dense d'arbustes et de buissons (formation dite « sclérophylle »), très répandue en Corse. Elle brûle facilement : savoir si elle compte comme « forêt » change la surface exposée au feu.
+- **Sources et colonnes :** BD Forêt (colonne `TFV`, classes de « landes » ; le maquis n'y apparaît pas sous ce nom) ; CORINE Land Cover (nomenclature à 44 postes, classe à identifier).
+- **Divergences :** La BD Forêt semble ranger le maquis dans les « landes » (49 884 ha de « lande ligneuse » en Corse-du-Sud, notice IGN, photos de 2011). CORINE Land Cover a peut-être une classe propre : à vérifier dans sa nomenclature. Les bases de feux (BDIFF) distinguent forêt et autres végétations dans leurs colonnes de surface.
+- **Règle retenue :** à décider par le groupe : compter ou non le maquis dans la surface exposée (à consigner dans le journal des décisions).
+- **Unité ou granularité :** Une surface (hectares), par polygone de végétation.
+- **Exemple :** Corse-du-Sud : 53 362 ha de landes, dont 49 884 ha de lande ligneuse (notice BD Forêt V2, IGN).
+- **Statut :** à vérifier
+- **Origine de la définition :** Fiches BD Forêt et CORINE Land Cover (exercice 2) ; définition à confirmer dans la nomenclature des deux producteurs.
+- **Ajouté par :** Ahmed PHILIPPE, 2026-11-18
 
 ## Météo des forêts
 
