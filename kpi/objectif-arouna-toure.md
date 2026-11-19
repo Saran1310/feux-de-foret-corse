@@ -1,7 +1,7 @@
 # Objectif : Arouna Touré
 
 - **Séance :** UE01.B, S1 (de la question analytique à l'objectif)
-- **Date :** 2026-11-18
+- **Date :** 2026-11-18, mis à jour le 2026-11-19 après la relecture de Biolohf
 - **Données utilisées :** Météo des forêts (`niveau_j1`, saisons 2024 et 2025) et BDIFF (feux de forêt du 2A et du 2B, `Date de première alerte`). Profils : `docs/qualite/profil-mdf.md`, `docs/qualite/profil-bdiff.md`, `docs/qualite/profil-bdiff-2b.md`.
 
 ## Question analytique
@@ -18,17 +18,17 @@
 |---|---|---|
 | Action | Recalibrer le seuil de déclenchement du dispositif renforcé. | C'est ce que l'on fait, pas le résultat attendu : rien ne dit quand ce sera réussi. |
 | Objectif | Réduire les jours de dispositif renforcé déclenchés sans qu'aucun feu ne parte. | Le résultat est nommé, mais sans valeur de départ, sans cible, sans échéance, et sans garde-fou : on peut l'atteindre en ne déclenchant plus jamais. |
-| Objectif SMART | D'ici la fin de l'été 2027, faire passer de 41,2 % à [b %] la part des jours de danger élevé (`niveau_j1` supérieur ou égal à 3) sans aucun départ de feu en Corse-du-Sud, sans augmenter la part des feux qui partent les jours de danger faible (`niveau_j1` = 1), aujourd'hui de 10,1 %. | |
+| Objectif SMART | Sur la saison 2027 (juin à septembre), faire passer de 41,2 % à 33 % (valeur provisoire, à valider avec le SDIS 2A) la part des jours de déclenchement du dispositif renforcé sans aucun départ de feu en Corse-du-Sud, sans augmenter la part des feux qui partent hors des jours de déclenchement, aujourd'hui de 90,6 % avec un déclenchement au niveau 3. Mesure en octobre 2027 sur les feux saisis par le SDIS 2A, confirmée en 2028 par la BDIFF. | |
 
 ## L'objectif SMART, critère par critère
 
 | Critère | Contenu |
 |---|---|
-| Spécifique | Les jours de danger élevé en Corse-du-Sud (2A), c'est-à-dire les jours où la prévision J+1 de la Météo des forêts vaut 3 ou plus, et parmi eux ceux où aucun feu de forêt n'est enregistré dans la BDIFF. |
-| Mesurable | La part passe de 41,2 % à [b %]. Elle se calcule en croisant `niveau_j1` (rapporté au lendemain de la publication) et la date de première alerte des feux BDIFF. |
-| Atteignable | [b %] est fixée avec la direction du SDIS 2A une fois la situation de référence présentée, pas avant. |
-| Réaliste | La condition "sans augmenter la part des feux les jours de danger faible" empêche de gagner en relevant simplement le seuil : au niveau 4, aucun jour ne serait déclenché en 2024 et 2025, et tous les feux tomberaient sous le seuil. |
-| Temporel | D'ici la fin de la saison 2027 (fin septembre 2027). |
+| Spécifique | Les jours de déclenchement du dispositif renforcé en Corse-du-Sud (2A), et parmi eux ceux où aucun feu de forêt n'est enregistré. La référence est calculée pour un déclenchement au niveau 3 (prévision J+1 de la Météo des forêts supérieure ou égale à 3), le seuil actuel du SDIS n'étant pas connu. |
+| Mesurable | La part passe de 41,2 % à 33 %. Elle se calcule en croisant les jours de déclenchement et la date de première alerte des feux. La BDIFF ne publiera l'année 2027 qu'en 2028 : la mesure de fin de saison se fait donc sur les feux saisis par le SDIS 2A (à demander, comme le coût du dispositif, décision 3 de la matrice), puis elle est confirmée avec la BDIFF en 2028. |
+| Atteignable | 33 % est la valeur observée en Haute-Corse avec le même indice et le même seuil (3 jours sans feu sur 9 jours de danger élevé, étés 2024-2025) : un département voisin l'atteint déjà. Elle reste provisoire et doit être validée avec la direction du SDIS 2A une fois la situation de référence présentée. |
+| Réaliste | La condition "sans augmenter la part des feux hors des jours de déclenchement" empêche de gagner en relevant simplement le seuil : au niveau 4, aucun jour ne serait déclenché en 2024 et 2025, et cette part passerait de 90,6 % à 100 %. |
+| Temporel | Saison 2027 (juin à septembre), mesurée en octobre 2027 avec les données du SDIS 2A ; confirmation avec la BDIFF lors de sa publication en 2028. |
 
 ## Situation de référence
 
@@ -41,10 +41,12 @@ Mesurée sur les deux saisons communes aux deux sources (jours du 4 juin au 1er 
 | 3 (élevé) | 17 | 10 | 58,8 % | 13 |
 | 4 (très élevé) | 0 | 0 | sans objet | 0 |
 
-Valeurs de départ de l'objectif :
+Valeurs de départ de l'objectif, pour un déclenchement au niveau 3 :
 
-- **Part des jours de danger élevé sans feu : 41,2 %** (7 jours sur 17).
-- **Part des feux les jours de danger faible : 10,1 %** (14 feux sur 139).
+- **Part des jours de déclenchement sans feu : 41,2 %** (7 jours sur 17).
+- **Part des feux hors des jours de déclenchement : 90,6 %** (126 feux sur 139, partis les jours de niveaux 1 et 2).
+
+La part des feux des seuls jours de danger faible (niveau 1 : 14 feux sur 139, soit 10,1 %) n'est pas retenue comme garde-fou : elle ne dépend pas du seuil choisi, et elle peut augmenter si le dispositif fonctionne, puisque les feux évités les jours de déclenchement font monter la part des autres jours.
 
 Si le groupe retient un autre sens pour "danger élevé" (question Q-1 de `docs/decisions.md`), les valeurs changent : avec un seuil au niveau 2, la part des jours d'alerte sans feu est de 57,9 % (106 jours sur 183). Le seuil actuel du SDIS 2A n'est pas connu (décision 3 de la matrice) : la valeur de référence du seuil réellement appliqué reste à mesurer.
 
@@ -52,7 +54,7 @@ Si le groupe retient un autre sens pour "danger élevé" (question Q-1 de `docs/
 
 Comment atteindre l'objectif sans faire avancer la stratégie ?
 
-1. **Relever le seuil au maximum.** Au niveau 4, il n'y a plus de jour de danger élevé, donc plus de fausse alerte. La condition sur les feux des jours de danger faible bloque ce contournement seulement en partie : il faut aussi suivre la part des feux qui partent hors des jours déclenchés.
+1. **Relever le seuil au maximum.** Au niveau 4, il n'y a plus de jour de déclenchement, donc plus de fausse alerte. C'est pour bloquer ce contournement que le garde-fou porte sur la part des feux hors des jours de déclenchement : elle passerait de 90,6 % à 100 %.
 2. **Changer la définition d'un feu.** Compter aussi les feux de végétation ou les très petits feux ferait baisser la part des jours sans feu sans rien changer au dispositif. La définition est figée : feux de type "F" de la BDIFF, toutes surfaces.
 3. **Effet du dispositif lui-même.** Si le dispositif renforcé empêche des feux de partir, un jour d'alerte réussi ressemble à une fausse alerte. L'indicateur pénaliserait alors un dispositif efficace. Ce biais ne peut pas être corrigé avec nos données ; il est à signaler à la direction.
 
