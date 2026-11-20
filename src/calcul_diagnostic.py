@@ -203,6 +203,11 @@ def rapport_zones(feux: pd.DataFrame) -> list[str]:
     p2 = feux.loc[feux["annee"] >= 2016, "Code INSEE"].value_counts()
     communs = [c for c in p1.head(10).index if c in set(p2.head(10).index)]
     rangs = pd.concat([p1, p2], axis=1).fillna(0)
+    surface = (pd.to_numeric(feux["Surface parcourue (m2)"]) / 10000).groupby(
+        feux["Code INSEE"]).sum().sort_values(ascending=False)
+    surf_top3 = surface.head(3)
+    top20_feux = set(par_commune.head(20).index)
+    hors_top20 = [c for c in surf_top3.index if c not in top20_feux]
     spearman = rangs.corr(method="spearman").iloc[0, 1]
 
     return [
@@ -222,6 +227,12 @@ def rapport_zones(feux: pd.DataFrame) -> list[str]:
         f"{len(communs)} (" + ", ".join(noms[c] for c in communs) + ")",
         "- Correlation de rang de Spearman entre les deux periodes "
         f"(toutes communes, nombre de feux par commune) : {spearman:.2f}",
+        "- Surface brulee : trois premieres communes : " + ", ".join(
+            f"{noms[c]} {h:.0f} ha" for c, h in surf_top3.items())
+        + f", soit {surf_top3.sum():.0f} ha sur {surface.sum():.0f} "
+        f"({pct(surf_top3.sum(), surface.sum())}) ; hors des 20 communes "
+        f"qui ont le plus de feux : " + (", ".join(noms[c] for c in hors_top20)
+                                          if hors_top20 else "aucune"),
         "",
     ]
 
