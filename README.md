@@ -27,8 +27,17 @@ L'objectif est d'exploiter différentes sources de données afin de mieux compre
 - `docs/analyse/` : analyses individuelles de la commande.
 - `docs/sources/` : documentation des sources.
 - `data/` : organisation des données.
+- `data/raw/` : couche bronze, copie exacte des fichiers sources, jamais modifiée (voir `docs/donnees-brutes.md`).
 - `src/` : code source.
 - `tests/` : tests du projet.
+
+## Sources et licences
+
+Les analyses de ce dépôt sont faites à partir de la base BDIFF (Base de données sur les incendies de forêts en France), https://bdiff.agriculture.gouv.fr. Droits de reproduction réservés et strictement limités. Les exports de la BDIFF sont conservés sans modification dans `data/raw/` ; tout ce qui est calculé ensuite est fait à partir de la base BDIFF et n'est pas la base de la BDIFF.
+
+Les niveaux de danger viennent des Archives de la Météo des forêts de Météo-France, publiées sur data.gouv.fr sous Licence Ouverte 2.0 (https://www.etalab.gouv.fr/licence-ouverte-open-licence).
+
+Procédure d'obtention, vérification des fichiers et impact des mises à jour : `docs/donnees-brutes.md`.
 
 ## Méthode de travail
 
