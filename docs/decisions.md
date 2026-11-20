@@ -2,7 +2,7 @@
 
 Une entrée par décision, la plus récente en bas. On ne supprime jamais une entrée : si une décision change, on ajoute une nouvelle entrée qui remplace l'ancienne et on l'indique.
 
-Dernière mise à jour : 2026-11-20 (D-014 ajoutée)
+Dernière mise à jour : 2026-11-20 (D-015 ajoutée, Q-7 tranchée)
 
 ## Modèle d'entrée
 
@@ -184,6 +184,22 @@ Dernière mise à jour : 2026-11-20 (D-014 ajoutée)
 - **Conséquences :** plus aucune fusion sans l'approbation d'un autre membre que l'auteur(e). Chaque nouveau commit annule les approbations déjà données : on approuve juste avant de fusionner. Les cinq pull requests gardent une relecture qui n'est pas prouvée avant la fusion ; l'historique le montre et ce journal le dit. La #34 n'a toujours aucune relecture.
 - **Liens :** tickets #9, #41 et #57 ; pull requests #25, #31, #33, #34, #36, #37, #38, #39 et #42 ; D-002 et D-006
 
+### D-015 · Licence de la BDIFF : copie exacte en couche bronze, transformations à partir de la couche argent
+- **Date :** 2026-11-20
+- **Décidé par :** réponse de l'enseignante du 2026-11-20, relayée par Arouna TOURE ; mise en œuvre à confirmer par le groupe
+- **Contexte :** la fiche BDIFF cite une licence qui interdit toute « modification » et toute « altération » des données (question ouverte Q-7, D-013). Nous ne savions pas si le pipeline avait le droit de transformer les exports.
+- **Options envisagées :** A. ne pas versionner les exports BDIFF et ne rien transformer ; B. versionner une copie exacte des exports et transformer seulement dans les couches suivantes ; C. versionner des exports déjà nettoyés.
+- **Réponse de l'enseignante :** la licence restrictive ne nous concerne pas dans ce cadre. Elle interdit la vente, la location et l'utilisation commerciale ou publicitaire. Elle interdit aussi de modifier les valeurs de la base (changer la date ou le lieu d'un feu, ajouter des lignes, compléter des valeurs manquantes) tout en la présentant comme la base de la BDIFF. Dans l'architecture médaillon en trois couches, la couche bronze est la copie exacte de l'export. Le nettoyage et le feature engineering sont autorisés à partir de la couche argent, tant que les valeurs d'origine restent disponibles dans la couche bronze. Le README doit citer la source, indiquer que les droits de reproduction sont réservés et strictement limités, et employer la formule « fait à partir de la base BDIFF ».
+- **Décision du groupe (à confirmer) :** option B. Les exports BDIFF bruts sont versionnés tels quels dans `data/raw/`, avec une vérification par empreinte SHA-256. Seul `data/processed/` est exclu du dépôt.
+- **Raison :** notre travail est une analyse de la base, pas une redistribution. Garder la copie exacte à côté des données transformées permet de prouver qu'aucune valeur d'origine n'a été changée.
+- **Conséquences :**
+  - Ce n'est pas encore appliqué. La pull request #88 (couche bronze, Arouna TOURE) n'est pas fusionnée.
+  - La pull request #83 (`.gitignore`) est ouverte et exclut aujourd'hui aussi `data/raw/` : elle doit être corrigée avant la fusion.
+  - Le README doit citer la source (https://bdiff.agriculture.gouv.fr), la mention des droits réservés et la formule « fait à partir de la base BDIFF ». À faire.
+  - Aucune vente, location ni utilisation commerciale des données ou des résultats.
+  - La fiche `docs/sources/fiche-bdiff.md` et les objectifs qui disent que `data/raw` n'est pas versionné doivent être mis à jour après la fusion de la #88.
+- **Liens :** question ouverte Q-7 ; D-013 ; pull requests #83 et #88 ; `docs/sources/fiche-bdiff.md`
+
 ---
 
 ## Décisions en attente de confirmation
@@ -202,6 +218,7 @@ Ces entrées sont des propositions de la cheffe de projet, pas encore validées 
 | Feux de 2026 exclus | D-009 | Ahmed PHILIPPE (avait proposé « renoncer » ; sa section 5 est alignée sur « approximer », commit 0725b14) | À confirmer (ticket #61) |
 | Décisions de la matrice : seuil, coût, 2B, source de référence | D-010 à D-013 | Les 4 membres | À confirmer (ticket #56) |
 | Protection de `main` et relecture des pull requests | D-014 | Les 4 membres ; relecteur à désigner pour la #34 | À confirmer (ticket #57) |
+| Licence de la BDIFF : copie exacte en couche bronze | D-015 | Les 4 membres | À confirmer |
 
 ---
 
@@ -217,5 +234,12 @@ Chaque décision prise ici devra aussi mettre à jour la fiche du glossaire conc
 | Q-4 | Quelle prévision utiliser : J+1 ou J+2 ? (J+1 retenu provisoirement dans D-010) | Arouna | Météo des forêts |
 | Q-5 | Le périmètre du SDIS 2A est-il le même que celui du département 2A ? | Tchatchoua | Département, SDIS 2A |
 | Q-6 | Quelle période de référence pour comparer les saisons (archives depuis juin 2024, feux depuis 2006 ou 1973) ? | Saran, Arouna | Météo des forêts, BDIFF, Prométhée |
-| Q-7 | La licence de la BDIFF (« aucune modification, ni altération ») permet-elle de transformer les données dans le pipeline ? À demander à l'enseignante. | Fiche BDIFF | BDIFF |
 | Q-8 | L'énoncé de l'exercice 3 cite `docs/journal-des-decisions.md` ; le dépôt utilise `docs/decisions.md`. À signaler à l'enseignante. | Saran | Sans objet |
+
+---
+
+## Questions tranchées
+
+| # | Question | Réponse | Décision |
+|---|---|---|---|
+| Q-7 | La licence de la BDIFF (« aucune modification, ni altération ») permet-elle de transformer les données dans le pipeline ? | Oui, à partir de la couche argent, la couche bronze restant une copie exacte. | D-015 |
