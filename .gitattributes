@@ -1,0 +1,2 @@
+# Couche bronze : copie exacte des sources, octets jamais convertis par Git (voir docs/donnees-brutes.md)
+data/raw/** -text
