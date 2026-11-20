@@ -3,6 +3,7 @@
 - **Séance :** UE01.B, S1 (diagnostic, puis de la question analytique à l'objectif)
 - **Date :** 2026-11-19
 - **Données utilisées :** BDIFF, export de la consultation publique avec les mêmes critères que `docs/qualite/profil-bdiff.md` (Corse-du-Sud, type de feu "F", date de première alerte du 2006-01-01 au 2025-12-31) : 4 694 feux, 124 communes. Champs utilisés : `Année`, `Code INSEE`, `Nom de la commune`, `Date de première alerte` (pour isoler les étés, juin à septembre), `Surface parcourue (m2)`.
+- **Calculs :** tous les chiffres de ce fichier sont refaits par `src/objectif_q1.py` (`python src/objectif_q1.py data/raw/bdiff_2A_2006_2025.csv`). Le fichier brut n'est pas dans le dépôt (`data/raw` n'est pas versionné). Les communes sont classées par nombre de feux ; en cas d'égalité, elles sont départagées par code INSEE.
 
 ## Diagnostic (ma version, pour la mise en commun du groupe)
 
@@ -24,7 +25,7 @@
 ### Verdict : confirmée pour les départs de feu, pas pour les surfaces brûlées
 
 - **Concentration :** sur les étés 2006-2025 (juin à septembre, 2 509 feux), 12 communes sur 124 (10 %) regroupent la moitié des feux ; il en faut 40 (32 %) pour 80 %. Sur les années entières, il en faut 17 pour la moitié et 45 pour 80 %.
-- **Stabilité :** une liste de 20 communes classées sur les 10 années précédentes retrouve chaque été entre 45,3 % (2022) et 65,0 % (2017) des feux de l'été suivant, 55,0 % en moyenne sur 2016-2025. Le classement est donc stable : les mêmes communes reviennent.
+- **Stabilité :** une liste de 20 communes classées sur les 10 années précédentes retrouve chaque été entre 45,3 % (2022) et 65,0 % (2017) des feux de l'été suivant, 55,2 % en moyenne sur 2016-2025. Le classement est donc stable : les mêmes communes reviennent.
 - **Réserve, les surfaces :** les surfaces brûlées dépendent de quelques grands feux qui ne se prévoient pas par le nombre de départs. Sur 2006-2025 (années entières), trois communes font la moitié des 13 133 ha brûlés (Fozzano 3 227 ha, Quenza 3 221 ha, Sartène 1 321 ha), dont deux hors des 20 communes qui ont le plus de feux. À l'été 2025, le plus grand feu (Sari-Solenzara, 182 ha, le 23 juin) part hors de la liste.
 
 Conséquence pour la direction : concentrer patrouilles et guet sur une liste de communes est justifié pour les départs de feu, mais une partie du dispositif doit rester mobile pour les grands feux. Cette réserve est une limite de mon objectif.
@@ -71,7 +72,7 @@ Valeur de départ de l'objectif : **53,2 %** (74 feux sur 139), avec 20 communes
 
 Classer les communes sur les seuls étés 2014-2023 donne presque le même résultat (54,0 %, 75 feux sur 139), mais avec des ex aequo à la vingtième place : le classement sur les années entières est retenu.
 
-La liste de référence (20 communes ayant eu le plus de feux sur 2014-2023, de la première à la vingtième) : Porto-Vecchio, Zonza, Ajaccio, Appietto, Bonifacio, Sartène, Bastelica, Alata, Vero, Lecci, Peri, Sarrola-Carcopino, Figari, Calcatoggio, Sotta, Palneca, Carbuccia, Vico, Zicavo, Conca.
+La liste de référence (20 communes ayant eu le plus de feux sur 2014-2023, de la première à la vingtième) : Porto-Vecchio, Zonza, Ajaccio, Appietto, Bonifacio, Sartène, Alata, Bastelica, Vero, Lecci, Peri, Sarrola-Carcopino, Figari, Calcatoggio, Sotta, Palneca, Carbuccia, Vico, Zicavo, Conca.
 
 Le choix de 20 communes est provisoire : le nombre de communes que le budget permet de couvrir n'est pas connu (contenu et coût du dispositif renforcé : à demander au SDIS 2A). Si le budget permet 15 ou 25 communes, la référence devient 47,5 % ou 56,8 %.
 
