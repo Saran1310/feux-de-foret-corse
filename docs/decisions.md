@@ -193,11 +193,11 @@ Dernière mise à jour : 2026-11-20 (D-015 ajoutée, Q-7 tranchée)
 - **Décision du groupe (à confirmer) :** option B. Les exports BDIFF bruts sont versionnés tels quels dans `data/raw/`, avec une vérification par empreinte SHA-256. Seul `data/processed/` est exclu du dépôt.
 - **Raison :** notre travail est une analyse de la base, pas une redistribution. Garder la copie exacte à côté des données transformées permet de prouver qu'aucune valeur d'origine n'a été changée.
 - **Conséquences :**
-  - Ce n'est pas encore appliqué. La pull request #88 (couche bronze, Arouna TOURE) n'est pas fusionnée.
+  - Appliqué en partie : la pull request #88 (couche bronze, Arouna TOURE) est fusionnée le 2026-11-20. Les exports BDIFF bruts sont dans `data/raw/`, avec un manifeste d'empreintes SHA-256.
   - La pull request #83 (`.gitignore`) est ouverte et exclut aujourd'hui aussi `data/raw/` : elle doit être corrigée avant la fusion.
-  - Le README doit citer la source (https://bdiff.agriculture.gouv.fr), la mention des droits réservés et la formule « fait à partir de la base BDIFF ». À faire.
+  - Le README cite la source (https://bdiff.agriculture.gouv.fr), la mention des droits réservés et la formule « fait à partir de la base BDIFF » (pull request #88).
   - Aucune vente, location ni utilisation commerciale des données ou des résultats.
-  - La fiche `docs/sources/fiche-bdiff.md` et les objectifs qui disent que `data/raw` n'est pas versionné doivent être mis à jour après la fusion de la #88.
+  - La fiche `docs/sources/fiche-bdiff.md` et les objectifs qui disent que `data/raw` n'est pas versionné doivent être mis à jour, maintenant que la #88 est fusionnée.
 - **Liens :** question ouverte Q-7 ; D-013 ; pull requests #83 et #88 ; `docs/sources/fiche-bdiff.md`
 
 ---
@@ -242,4 +242,4 @@ Chaque décision prise ici devra aussi mettre à jour la fiche du glossaire conc
 
 | # | Question | Réponse | Décision |
 |---|---|---|---|
-| Q-7 | La licence de la BDIFF (« aucune modification, ni altération ») permet-elle de transformer les données dans le pipeline ? | Oui, à partir de la couche argent, la couche bronze restant une copie exacte. | D-015 |
+| Q-7 | La licence de la BDIFF (« aucune modification, ni altération ») permet-elle de transformer les données dans le pipeline ? | Oui, à partir de la couche argent, la couche bronze restant une copie exacte (enseignante, 2026-11-20). | D-015 |
