@@ -2,7 +2,7 @@
 
 Une entrée par décision, la plus récente en bas. On ne supprime jamais une entrée : si une décision change, on ajoute une nouvelle entrée qui remplace l'ancienne et on l'indique.
 
-Dernière mise à jour : 2026-11-19 (D-009 à D-013 ajoutées, D-009 mise à jour)
+Dernière mise à jour : 2026-11-20 (D-014 ajoutée)
 
 ## Modèle d'entrée
 
@@ -171,6 +171,19 @@ Dernière mise à jour : 2026-11-19 (D-009 à D-013 ajoutées, D-009 mise à jou
 - **Conséquences :** en cas de désaccord depuis 2023, la BDIFF prévaut. La licence de la BDIFF n'est pas ouverte (« aucune modification ni altération ») : voir la question ouverte Q-7. Le dénominateur de surface boisée suit D-007 et D-008.
 - **Liens :** ticket #20, pull request #46, `docs/sources/matrice.md` (décisions 5 et 6), `docs/sources/fiche-bdiff.md`
 
+### D-014 · Protection de `main` et relecture des pull requests
+- **Date :** 2026-11-17 (protection de `main`), 2026-11-18 (restauration de l'analyse de Biolohf)
+- **Décidé par :** Saran DIABAGATE (cheffe de projet), à confirmer par le groupe
+- **Contexte :** le 17 novembre, entre 19 h 28 et 21 h 15 (heure de Paris), cinq pull requests de Saran DIABAGATE ont été fusionnées par Biolohf TCHATCHOUA sans qu'aucune approbation n'ait été déposée avant la fusion : #33 (analyse de groupe), #34 (fiche Admin Express), #36 (journal D-001 à D-006), #37 (rôles) et #38 (structure du dépôt). Arouna TOURE a approuvé quatre d'entre elles après la fusion (#38 à 21 h 25, #36 à 21 h 32, #37 à 21 h 36, #33 à 21 h 38). La #34 n'a eu aucune relecture. Le même jour, le fichier `docs/analyse/commande-biolohf-tchatchoua.md`, ajouté par la pull request #25, avait été retiré de `main` par le commit `af10da7` (« retirer l'analyse en doublon de la branche sources »), arrivé dans `main` avec la pull request #31, alors que D-006 prévoit les quatre analyses individuelles dans `main`.
+- **Options envisagées :** A. garder la règle d'équipe de D-002 sans règle technique ; B. protéger `main` par un ruleset GitHub et demander une relecture après coup pour les cinq pull requests ; C. annuler les cinq fusions et rouvrir les pull requests.
+- **Décision :** option B.
+  - Ruleset `protection-main`, actif depuis le 2026-11-17 (22 h 25) sur la branche par défaut : pull request obligatoire, 1 approbation requise, approbation annulée quand la branche reçoit un nouveau commit, fusion par merge commit uniquement, suppression de la branche et envoi forcé interdits, aucun compte autorisé à contourner la règle.
+  - Les cinq pull requests restent dans `main`. Un commentaire « relu et validé » est demandé à un relecteur autre que l'auteure sur chacune.
+  - L'analyse de Biolohf TCHATCHOUA est restaurée à l'identique depuis la branche `analyse/commande-biolohf` (pull request #42, ticket #41), approuvée par Biolohf TCHATCHOUA et Ahmed PHILIPPE avant la fusion, le 2026-11-18.
+- **Raison :** D-002 demandait déjà que tout passe par une pull request relue, mais rien ne l'imposait, et l'historique ne permettait pas de prouver la relecture. Annuler les fusions (option C) n'aurait pas apporté plus de preuve qu'une relecture après coup, et aurait brouillé l'historique.
+- **Conséquences :** plus aucune fusion sans l'approbation d'un autre membre que l'auteur(e). Chaque nouveau commit annule les approbations déjà données : on approuve juste avant de fusionner. Les cinq pull requests gardent une relecture qui n'est pas prouvée avant la fusion ; l'historique le montre et ce journal le dit. La #34 n'a toujours aucune relecture.
+- **Liens :** tickets #9, #41 et #57 ; pull requests #25, #31, #33, #34, #36, #37, #38, #39 et #42 ; D-002 et D-006
+
 ---
 
 ## Décisions en attente de confirmation
@@ -188,6 +201,7 @@ Ces entrées sont des propositions de la cheffe de projet, pas encore validées 
 | Ne pas additionner CORINE Land Cover et BD Forêt | D-008 | Les 4 membres | À confirmer (ticket #43) |
 | Feux de 2026 exclus | D-009 | Ahmed PHILIPPE (avait proposé « renoncer » ; sa section 5 est alignée sur « approximer », commit 0725b14) | À confirmer (ticket #61) |
 | Décisions de la matrice : seuil, coût, 2B, source de référence | D-010 à D-013 | Les 4 membres | À confirmer (ticket #56) |
+| Protection de `main` et relecture des pull requests | D-014 | Les 4 membres ; relecteur à désigner pour la #34 | À confirmer (ticket #57) |
 
 ---
 
