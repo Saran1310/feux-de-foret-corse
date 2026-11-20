@@ -14,7 +14,7 @@ Le pipeline suit une architecture en trois couches :
 
 Les couches argent et or sont construites par le pipeline (ticket #23). La couche bronze n'est jamais modifiée, ni à la main ni par un script : aucune date, aucun lieu, aucune ligne ajoutée ou complétée. C'est ce qui permet de suivre l'origine de chaque chiffre (lineage) et de respecter la licence de la BDIFF (voir « Licences et citation »).
 
-Avec l'accord de l'enseignant (20 novembre 2026), les fichiers bruts de la BDIFF sont versionnés dans le dépôt : la restriction de la licence porte sur l'usage commercial et sur la modification des données présentées comme celles de la BDIFF, pas sur une analyse faite à partir de la base.
+Avec l'accord de l'enseignante (20 novembre 2026), les fichiers bruts de la BDIFF sont versionnés dans le dépôt : la restriction de la licence porte sur l'usage commercial et sur la modification des données présentées comme celles de la BDIFF, pas sur une analyse faite à partir de la base.
 
 ## Les cinq fichiers de la couche bronze
 
