@@ -219,8 +219,6 @@ __marimo__/
 # Streamlit
 .streamlit/secrets.toml
 
-# Données : jamais versionnées (voir #81)
-data/raw/*
+# Données transformées (couches argent et or) : régénérées par le pipeline, jamais versionnées (voir #81, D-015)
 data/processed/*
-!data/raw/.gitkeep
 !data/processed/.gitkeep
