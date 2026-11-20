@@ -91,3 +91,4 @@ Detail par saison (feux et jours declenches) :
 - Feux 2006-2015 : 3009 ; feux 2016-2025 : 1685
 - Communes presentes dans les 10 premieres des deux periodes : 8 (Ajaccio, Sartène, Porto-Vecchio, Zonza, Appietto, Alata, Bonifacio, Bastelica)
 - Correlation de rang de Spearman entre les deux periodes (toutes communes, nombre de feux par commune) : 0.89
+- Surface brulee : trois premieres communes : Fozzano 3227 ha, Quenza 3221 ha, Sartène 1321 ha, soit 7769 ha sur 13133 (59.2 %) ; hors des 20 communes qui ont le plus de feux : Fozzano, Quenza
