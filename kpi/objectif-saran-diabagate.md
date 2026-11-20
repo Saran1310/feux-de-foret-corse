@@ -4,7 +4,7 @@
 - **Date :** 2026-11-19
 - **Ticket :** #71
 - **Données utilisées :** Météo des forêts (`niveau_j1`, saisons 2024 et 2025, 96 départements) et BDIFF (feux de forêt de type F de toute la France métropolitaine, `Date de première alerte`, 3 908 feux du 2024-01-01 au 2025-12-31). Les calculs sont refaits par `src/analyse_comparaison.py`. Lecture des dates selon la fiche Météo des forêts : `niveau_j1` concerne le lendemain de la publication, les heures sont en UTC.
-- **Origine des fichiers :** export BDIFF « France entière » (type F, du 2024-01-01 au 2025-12-31) sur bdiff.agriculture.gouv.fr et fichiers des saisons 2024 et 2025 de la Météo des forêts sur data.gouv.fr, téléchargés le 2026-11-19. Les fichiers bruts ne sont pas dans le dépôt (le dossier `data/raw` n'est pas versionné) : pour refaire le calcul, `python src/analyse_comparaison.py bdiff_france.csv mdf_2024.csv mdf_2025.csv`.
+- **Origine des fichiers :** export BDIFF « France entière » (type F, du 2024-01-01 au 2025-12-31) sur bdiff.agriculture.gouv.fr et fichiers des saisons 2024 et 2025 de la Météo des forêts sur data.gouv.fr, téléchargés le 2026-11-19. Les fichiers de la Météo des forêts sont dans le dépôt (`data/raw/mdf_2024.csv.gz` et `data/raw/mdf_2025.csv.gz`, couche bronze versionnée, voir `docs/donnees-brutes.md`). L'export « France entière » n'y est pas encore : il sera ajouté avec la comparaison France entière (D-016). Pour refaire le calcul : `python src/analyse_comparaison.py bdiff_france.csv data/raw/mdf_2024.csv.gz data/raw/mdf_2025.csv.gz`.
 
 ## Question analytique
 

@@ -3,7 +3,7 @@
 - **Séance :** UE01.B, S1 (diagnostic, puis de la question analytique à l'objectif)
 - **Date :** 2026-11-19
 - **Données utilisées :** BDIFF, export de la consultation publique avec les mêmes critères que `docs/qualite/profil-bdiff.md` (Corse-du-Sud, type de feu "F", date de première alerte du 2006-01-01 au 2025-12-31) : 4 694 feux, 124 communes. Champs utilisés : `Année`, `Code INSEE`, `Nom de la commune`, `Date de première alerte` (pour isoler les étés, juin à septembre), `Surface parcourue (m2)`.
-- **Calculs :** tous les chiffres de ce fichier sont refaits par `src/objectif_q1.py` (`python src/objectif_q1.py data/raw/bdiff_2A_2006_2025.csv`). Le fichier brut n'est pas dans le dépôt (`data/raw` n'est pas versionné). Les communes sont classées par nombre de feux ; en cas d'égalité, elles sont départagées par code INSEE.
+- **Calculs :** tous les chiffres de ce fichier sont refaits par `src/objectif_q1.py` (`python src/objectif_q1.py data/raw/bdiff_2A_2006_2025.csv`). Le fichier brut est dans le dépôt (`data/raw`, couche bronze versionnée, voir `docs/donnees-brutes.md`). Les communes sont classées par nombre de feux ; en cas d'égalité, elles sont départagées par code INSEE.
 
 ## Diagnostic (ma version, pour la mise en commun du groupe)
 
