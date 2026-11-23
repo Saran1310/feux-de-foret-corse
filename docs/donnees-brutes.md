@@ -16,12 +16,13 @@ Les couches argent et or sont construites par le pipeline (ticket #23). La couch
 
 Avec l'accord de l'enseignante (20 novembre 2026), les fichiers bruts de la BDIFF sont versionnés dans le dépôt : la restriction de la licence porte sur l'usage commercial et sur la modification des données présentées comme celles de la BDIFF, pas sur une analyse faite à partir de la base.
 
-## Les cinq fichiers de la couche bronze
+## Les six fichiers de la couche bronze
 
 | Fichier | Source | Licence | Comment l'obtenir à nouveau |
 |---|---|---|---|
 | `bdiff_2A_2006_2025.csv` | BDIFF, Corse-du-Sud | Droits de reproduction réservés et strictement limités | Export manuel, procédure ci-dessous |
 | `bdiff_2B_2006_2025.csv` | BDIFF, Haute-Corse | Droits de reproduction réservés et strictement limités | Export manuel, procédure ci-dessous |
+| `bdiff_france_2024_2025.csv` | BDIFF, France entière, 2024-2025 | Droits de reproduction réservés et strictement limités | Export manuel, procédure ci-dessous (D-016) |
 | `mdf_2024.csv.gz` | Archives de la Météo des forêts, saison 2024 | Licence Ouverte 2.0 (Etalab) | `python src/donnees_brutes.py telecharger` |
 | `mdf_2025.csv.gz` | Archives de la Météo des forêts, saison 2025 | Licence Ouverte 2.0 (Etalab) | même commande |
 | `mdf_2026.csv.gz` | Archives de la Météo des forêts, saison 2026 | Licence Ouverte 2.0 (Etalab) | même commande |
@@ -40,7 +41,7 @@ La commande compare chaque fichier de `data/raw/` au manifeste : `OK` si le fich
 
 Le fichier `.gitattributes` demande à Git de ne jamais convertir les fins de ligne dans `data/raw/` : sans lui, un clone sous Windows pourrait changer les octets des CSV et casser cette vérification.
 
-Le manifeste a été produit une seule fois avec `python src/donnees_brutes.py manifeste`, à partir des fichiers de référence. Il ne doit être régénéré que si le groupe décide de changer de données de référence (décision à consigner dans `docs/decisions.md`).
+Le manifeste est produit avec `python src/donnees_brutes.py manifeste`, à partir des fichiers de référence. Il ne doit être régénéré que si le groupe ajoute ou change un fichier de référence (décision à consigner dans `docs/decisions.md`). La date d'un fichier inchangé reste celle du manifeste précédent.
 
 ## Procédure d'export de la BDIFF
 
@@ -55,7 +56,9 @@ Pour refaire les exports, par exemple pour vérifier si la base a été mise à 
 4. Enregistrer le fichier CSV sans l'ouvrir dans Excel (Excel peut modifier les codes et les dates).
 5. Le comparer à la couche bronze avec la commande `verifier`, après l'avoir placé dans `data/raw/` sous le même nom ; pour revenir à la version de référence ensuite : `git restore data/raw/`.
 
-Contrôle : les trois premières lignes du fichier rappellent les critères d'export. `src/calcul_diagnostic.py` les relit et s'arrête si le département, la période ou le type de feu ne correspondent pas.
+Pour l'export de la France entière (D-016), la procédure est la même, sans filtre de département, du **01/01/2024** au **31/12/2025**, type de feu **F** : **3 908** incendies lors de notre export.
+
+Contrôle : les premières lignes du fichier rappellent les critères d'export. `src/calcul_diagnostic.py` les relit et s'arrête si le département, la période ou le type de feu ne correspondent pas.
 
 ## Mises à jour des sources et impact
 

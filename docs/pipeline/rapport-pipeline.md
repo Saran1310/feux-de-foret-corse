@@ -25,7 +25,7 @@ Genere par `src/pipeline.py` (`python src/pipeline.py`). Ne pas modifier a la ma
 
 | Couche | Controle | Resultat | Detail |
 |---|---|---|---|
-| bronze | manifeste SHA-256 | OK | 5 fichiers identiques |
+| bronze | manifeste SHA-256 | OK | 6 fichiers identiques |
 | bronze | bdiff_2A_2006_2025.csv : critere d'export "Type de feu : F" | OK | present dans la ligne 3 |
 | bronze | bdiff_2A_2006_2025.csv : critere d'export "Département(s) : 2A" | OK | present dans la ligne 3 |
 | bronze | bdiff_2A_2006_2025.csv : critere d'export "2006-01-01" | OK | present dans la ligne 3 |

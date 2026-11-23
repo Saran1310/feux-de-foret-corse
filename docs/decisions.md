@@ -156,9 +156,9 @@ Dernière mise à jour : 2026-11-20 (D-015 ajoutée, Q-7 tranchée)
 - **Décidé par :** Biolohf TCHATCHOUA (matrice, pull request #64)
 - **Contexte :** la matrice proposait d'abord de vérifier la présence du 2B dans la Météo des forêts et d'exporter la BDIFF pour le 2B, puis d'approximer (les cellules « inconnu » appellent une vérification avant toute décision).
 - **Options envisagées :** vérifier puis approximer ; renoncer à la comparaison avec la Haute-Corse et le reste de la France.
-- **Décision :** **approximer**, après vérification. Le profilage (pull request #52) montre 371 bulletins pour la Haute-Corse dans la Météo des forêts, et la BDIFF a été exportée pour le 2B (4 992 feux, 2006-2025). La comparaison 2A / 2B est possible. L'export de la France entière reste à faire si le groupe garde cette comparaison.
+- **Décision :** **approximer**, après vérification. Le profilage (pull request #52) montre 371 bulletins pour la Haute-Corse dans la Météo des forêts, et la BDIFF a été exportée pour le 2B (4 992 feux, 2006-2025). La comparaison 2A / 2B est possible. L'export de la France entière a été fait ensuite et versionné (voir D-016).
 - **Raison :** la vérification demandée par l'exercice est faite, et le 2B est présent dans les deux sources.
-- **Conséquences :** comparaison limitée à deux saisons communes ; sans export national, pas de comparaison avec le reste de la France.
+- **Conséquences :** comparaison limitée à deux saisons communes ; la comparaison avec le reste de la France demande l'export national, ajouté par D-016.
 - **Liens :** tickets #20 et #51, pull requests #52 et #64, `docs/qualite/profil-mdf.md`, `docs/qualite/profil-bdiff-2b.md`
 
 ### D-013 · La BDIFF comme source de référence pour les feux
@@ -167,7 +167,7 @@ Dernière mise à jour : 2026-11-20 (D-015 ajoutée, Q-7 tranchée)
 - **Contexte :** deux sources décrivent les feux du 2A : la BDIFF et le jeu de la DDT 2A, qui reprend la BDIFF depuis 2023.
 - **Options envisagées :** BDIFF seule ; DDT 2A seule ; les deux.
 - **Décision :** la **BDIFF** est la source de référence pour les feux (Q1 à Q4). La DDT 2A est gardée en complément pour la localisation.
-- **Raison :** la BDIFF est la seule base nationale documentée, avec la date et la commune de chaque feu (la couverture nationale n'est pas encore vérifiée : l'export de la France entière n'est pas fait).
+- **Raison :** la BDIFF est la seule base nationale documentée, avec la date et la commune de chaque feu (la couverture nationale n'est pas encore vérifiée ; l'export de la France entière, 2024-2025, est dans la couche bronze, voir D-016).
 - **Conséquences :** en cas de désaccord depuis 2023, la BDIFF prévaut. La licence de la BDIFF n'est pas ouverte (« aucune modification ni altération ») : voir la question ouverte Q-7. Le dénominateur de surface boisée suit D-007 et D-008.
 - **Liens :** ticket #20, pull request #46, `docs/sources/matrice.md` (décisions 5 et 6), `docs/sources/fiche-bdiff.md`
 
@@ -199,6 +199,20 @@ Dernière mise à jour : 2026-11-20 (D-015 ajoutée, Q-7 tranchée)
   - Aucune vente, location ni utilisation commerciale des données ou des résultats.
   - La fiche `docs/sources/fiche-bdiff.md` et les objectifs qui disent que `data/raw` n'est pas versionné doivent être mis à jour, maintenant que la #88 est fusionnée.
 - **Liens :** question ouverte Q-7 ; D-013 ; pull requests #83 et #88 ; `docs/sources/fiche-bdiff.md`
+
+### D-016 · Export BDIFF de la France entière versionné dans la couche bronze
+- **Date :** 2026-11-23
+- **Décidé par :** Saran DIABAGATE (cheffe de projet), à confirmer par le groupe
+- **Contexte :** la comparaison de la Q4 (`src/analyse_comparaison.py`, fiche S2 de Saran DIABAGATE) met la Corse-du-Sud en regard des autres départements. Elle lit l'export BDIFF de la France entière (type F, du 2024-01-01 au 2025-12-31, 3 908 feux), fait le 2026-11-19, qui n'était pas dans le dépôt : un autre membre ne pouvait pas retrouver ses chiffres. D-012 et D-013 notaient que cet export restait à faire.
+- **Options envisagées :** A. ne pas le versionner et décrire seulement la procédure d'export ; B. le versionner tel quel dans `data/raw/`, comme les exports du 2A et du 2B (D-015).
+- **Décision :** option B. Le fichier `data/raw/bdiff_france_2024_2025.csv` est la copie exacte de l'export, sans aucune modification. Son empreinte SHA-256 est dans `data/manifeste.csv` et `python src/donnees_brutes.py verifier` la contrôle.
+- **Raison :** D-015 demande une copie exacte de chaque export BDIFF en couche bronze. Sans ce fichier, la fiche S2 et la comparaison de la Q4 ne se refont pas depuis le dépôt (lineage). Il pèse 469 Ko, comme les autres exports.
+- **Conséquences :**
+  - Le fichier couvre 2024 et 2025 seulement, pas 2006-2025 : la comparaison avec le reste de la France porte sur les deux saisons de la Météo des forêts.
+  - Il n'est pas chargé dans le pipeline (`src/pipeline.py` lit seulement le 2A et le 2B) et n'a pas de profil de qualité : à générer avec `src/profilage.py` avant tout usage dans le pipeline.
+  - `src/donnees_brutes.py` décrit maintenant les exports quel que soit le nombre de lignes d'information en tête de fichier (2 pour l'export national, 3 pour ceux de la Corse), et le manifeste garde la date des fichiers inchangés.
+  - Mêmes règles de licence que D-015 : source citée, droits de reproduction réservés et strictement limités, aucune utilisation commerciale.
+- **Liens :** D-012, D-013, D-015 ; tickets #102 et #107, pull request #106 ; `docs/donnees-brutes.md`
 
 ---
 
