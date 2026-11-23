@@ -16,8 +16,9 @@ Trois commandes, depuis la racine du depot :
     python src/donnees_brutes.py manifeste
         Decrit chaque fichier present dans data/raw/ (taille, nombre de
         lignes, empreinte SHA-256, date du fichier, criteres d'export) et
-        ecrit data/manifeste.csv. A lancer une seule fois, quand les donnees
-        de reference sont en place ; le manifeste est versionne.
+        ecrit data/manifeste.csv. A lancer quand un fichier de reference est
+        ajoute ; le manifeste est versionne. Un fichier inchange garde la
+        date du manifeste precedent.
 
     python src/donnees_brutes.py verifier
         Compare les fichiers de data/raw/ au manifeste. S'arrete avec un code
@@ -51,6 +52,10 @@ FICHIERS = {
     },
     "bdiff_2B_2006_2025.csv": {
         "source": "BDIFF, Haute-Corse",
+        "obtention": "export manuel, procedure dans docs/donnees-brutes.md",
+    },
+    "bdiff_france_2024_2025.csv": {
+        "source": "BDIFF, France entiere, 2024-2025",
         "obtention": "export manuel, procedure dans docs/donnees-brutes.md",
     },
     "mdf_2024.csv.gz": {
@@ -98,9 +103,12 @@ def decrire(nom: str) -> dict:
     if lignes is None:
         criteres, donnees = "fichier illisible", "illisible"
     elif nom.startswith("bdiff"):
-        # Trois lignes d'information, puis l'en-tete.
-        criteres = lignes[2].replace('";"', " ; ").strip('"')
-        donnees = len(lignes) - 4
+        # Des lignes d'information (leur nombre depend de l'export), puis
+        # l'en-tete, qui commence par "Annee".
+        entete = next(i for i, l in enumerate(lignes) if l.startswith("Ann"))
+        criteres = next(l for l in lignes[:entete] if l.startswith('"Crit'))
+        criteres = criteres.replace('";"', " ; ").strip('"')
+        donnees = len(lignes) - entete - 1
     else:
         criteres = ""
         donnees = len(lignes) - 1
@@ -170,11 +178,21 @@ def ecrire_manifeste() -> int:
         print("Fichiers absents de data/raw/ : " + ", ".join(manquants),
               file=sys.stderr)
         return 1
+    anciennes = {}
+    if MANIFESTE.exists():
+        with open(MANIFESTE, encoding="utf-8") as f:
+            anciennes = {l["fichier"]: l for l in csv.DictReader(f)}
     with open(MANIFESTE, "w", newline="", encoding="utf-8") as f:
         ecrivain = csv.DictWriter(f, fieldnames=COLONNES)
         ecrivain.writeheader()
         for nom in FICHIERS:
-            ecrivain.writerow(decrire(nom))
+            ligne = decrire(nom)
+            ancienne = anciennes.get(nom)
+            if ancienne and ancienne["sha256"] == ligne["sha256"]:
+                # Fichier inchange : la date du disque change a chaque
+                # clonage, celle du manifeste reste la date d'origine.
+                ligne["date_du_fichier"] = ancienne["date_du_fichier"]
+            ecrivain.writerow(ligne)
     print(f"Manifeste ecrit : {MANIFESTE} ({len(FICHIERS)} fichiers)")
     return 0
 
