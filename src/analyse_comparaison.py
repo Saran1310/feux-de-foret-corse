@@ -128,3 +128,39 @@ x2 = mdf.merge(f2, on=["num_dep", "jour"], how="left").fillna({"feux": 0})
 x2["groupe"] = x2.num_dep.map(lambda v: "2A" if v == "2A" else "2B" if v == "2B" else "Autres")
 for g, sg in x2.groupby("groupe"):
     print(g, {int(n): round(100 * (t.feux > 0).mean(), 1) for n, t in sg.groupby("niveau") if n < 4})
+
+# ---------------------------------------------------------------------------
+# Fiche d'indicateurs S2 (kpi/fiche-indicateurs-saran-diabagate.md)
+# ---------------------------------------------------------------------------
+print("\n\n######## Fiche d'indicateurs S2 ########")
+
+print("\n== Faisabilité : champs utilisés et lignes utilisables")
+n_feux = len(bdiff)
+for c in ["Département", "Code INSEE", "Date de première alerte"]:
+    print(f"BDIFF {c} : {int(bdiff[c].notna().sum())} renseignés sur {n_feux}")
+print("BDIFF dates illisibles :", int(pd.to_datetime(bdiff["Date de première alerte"], errors="coerce").isna().sum()))
+brut = pd.concat([pd.read_csv(c, sep=None, engine="python", dtype=str) for c in sys.argv[2:]])
+for c in ["date", "num_dep", "niveau_j1"]:
+    print(f"Météo des forêts {c} : {int(brut[c].notna().sum())} renseignés sur {len(brut)}")
+print("Météo des forêts niveau_j1 hors 1 à 4 :", int((~brut["niveau_j1"].isin(["1", "2", "3", "4"])).sum()))
+print("Météo des forêts doublons département et date :", int(brut.duplicated(["num_dep", "date"]).sum()))
+print("Départements couverts :", x.num_dep.nunique(), "| jours par département :", sorted(x.groupby("num_dep").size().unique().tolist()))
+absents = sorted(set(bdiff.num_dep) - set(x.num_dep))
+dans_fenetre = int(x.feux.sum())
+hors_dep = int(bdiff.num_dep.isin(absents).sum())
+print(f"Feux BDIFF : {n_feux} = {dans_fenetre} dans la fenêtre + {n_feux - dans_fenetre - hors_dep} hors fenêtre (avant le 4 juin ou après le 1er octobre) + {hors_dep} dans des départements absents de la Météo des forêts {absents}")
+
+print("\n== Taille des échantillons : jours du 2A par saison et par niveau")
+print(x[x.groupe == "2A"].groupby(["annee", "niveau"]).size().to_dict())
+
+print("\n== Écart du 2A avec chaque référence, par saison (points) : intervalle de la différence et largeur")
+references = {"Autres": x[x.groupe == "Autres"], "2B": x[x.groupe == "2B"], "Mediterr.": x_med}
+for libelle, sous in [("2024", x[x.annee == 2024]), ("2025", x[x.annee == 2025]), ("2024-2025", x)]:
+    for n in (1, 2):
+        k1, n1 = comptes(sous[sous.groupe == "2A"], n)
+        for nom, g in references.items():
+            gs = g[g.jour.isin(sous.jour.unique())]
+            k2, n2 = comptes(gs, n)
+            lo, hi = newcombe(k1, n1, k2, n2)
+            print(f"{libelle:9s} niveau {n} : 2A {k1}/{n1} = {100*k1/n1:4.1f} % | {nom:9s} {k2}/{n2} = {100*k2/n2:4.1f} % "
+                  f"| écart {100*k1/n1-100*k2/n2:+5.1f} [{lo:+5.1f} ; {hi:+5.1f}], largeur {hi-lo:4.1f}")
