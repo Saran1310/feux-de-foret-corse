@@ -28,6 +28,15 @@ Genere par `src/calcul_diagnostic.py` a partir des fichiers bruts de `data/raw/`
 | niveau_j1 >= 3 et niveau_j2 de la veille >= 3 | 1 | 0 (0.0 %) | 137 (98.6 %) |
 | niveau_j1 >= 4 | 0 | 0 (sans objet) | 139 (100.0 %) |
 
+Jours declenches par ete (saisons communes) :
+
+| Regle de declenchement | 2024 | 2025 | Moyenne par ete | Part des jours |
+|---|---|---|---|---|
+| niveau_j1 >= 1 (tous les jours) | 120 | 120 | 120.0 | 100.0 % |
+| niveau_j1 >= 2 | 71 | 112 | 91.5 | 76.2 % |
+| niveau_j1 >= 3 | 3 | 14 | 8.5 | 7.1 % |
+| niveau_j1 >= 4 | 0 | 0 | 0.0 | 0.0 % |
+
 - Jours de danger eleve par saison (toutes saisons de l'indice) : 2024 : 3, 2025 : 14, 2026 : 18
 
 Detail par saison (feux et jours declenches) :
@@ -65,6 +74,15 @@ Detail par saison (feux et jours declenches) :
 | niveau_j1 >= 3 et niveau_j2 de la veille >= 3 | 0 | 0 (sans objet) | 87 (100.0 %) |
 | niveau_j1 >= 4 | 0 | 0 (sans objet) | 87 (100.0 %) |
 
+Jours declenches par ete (saisons communes) :
+
+| Regle de declenchement | 2024 | 2025 | Moyenne par ete | Part des jours |
+|---|---|---|---|---|
+| niveau_j1 >= 1 (tous les jours) | 120 | 120 | 120.0 | 100.0 % |
+| niveau_j1 >= 2 | 67 | 102 | 84.5 | 70.4 % |
+| niveau_j1 >= 3 | 1 | 8 | 4.5 | 3.8 % |
+| niveau_j1 >= 4 | 0 | 0 | 0.0 | 0.0 % |
+
 - Jours de danger eleve par saison (toutes saisons de l'indice) : 2024 : 1, 2025 : 8, 2026 : 9
 
 Detail par saison (feux et jours declenches) :
@@ -79,6 +97,10 @@ Detail par saison (feux et jours declenches) :
 | niveau_j1 >= 3 | 2026 | 9 | feux exclus (ticket #61) | sans objet |
 
 - Jours de danger eleve, Corse-du-Sud et Haute-Corse ensemble (saisons communes) : 26
+
+### Feux hors de juin a septembre (Corse-du-Sud)
+
+- Feux 2006-2025 : 4694, dont hors de juin a septembre : 2185 (46.5 %)
 
 ## Volet zones : BDIFF par commune
 

@@ -161,6 +161,21 @@ def rapport_seuil(j: pd.DataFrame, nom: str, mdf_dep: pd.DataFrame,
         r.append(f"| {libelle} | {len(d)} | {sans_d} ({pct(sans_d, len(d))}) | "
                  f"{hors} ({pct(hors, total_feux)}) |")
 
+    r += ["", "Jours declenches par ete (saisons communes) :", "",
+          "| Regle de declenchement | " + " | ".join(
+              str(a) for a in SAISONS_COMMUNES)
+          + " | Moyenne par ete | Part des jours |",
+          "|---|" + "---|" * (len(SAISONS_COMMUNES) + 2)]
+    for libelle, niveau in (("niveau_j1 >= 1 (tous les jours)", 1),
+                            ("niveau_j1 >= 2", 2), ("niveau_j1 >= 3", 3),
+                            ("niveau_j1 >= 4", 4)):
+        masque = j["n1"] >= niveau
+        par_an = [int((masque & (j["jour"].dt.year == a)).sum())
+                  for a in SAISONS_COMMUNES]
+        moyenne = sum(par_an) / len(SAISONS_COMMUNES)
+        r.append(f"| {libelle} | " + " | ".join(str(n) for n in par_an)
+                 + f" | {moyenne:.1f} | {pct(sum(par_an), len(j))} |")
+
     par_saison = (mdf_dep[mdf_dep["n1"] >= 3]
                   .groupby(mdf_dep["jour"].dt.year).size())
     r += ["", "- Jours de danger eleve par saison (toutes saisons de l'indice) : "
@@ -184,6 +199,16 @@ def rapport_seuil(j: pd.DataFrame, nom: str, mdf_dep: pd.DataFrame,
                          "feux exclus (ticket #61) | sans objet |")
     r.append("")
     return r
+
+
+def rapport_hors_saison(feux: pd.DataFrame) -> list[str]:
+    """Part des feux qui partent hors de juin a septembre (hors fenetre de l'indice)."""
+    mois = feux["alerte"].dt.month
+    hors = int((~mois.between(6, 9)).sum())
+    return ["### Feux hors de juin a septembre (Corse-du-Sud)", "",
+            f"- Feux {feux['annee'].min()}-{feux['annee'].max()} : {len(feux)}, "
+            f"dont hors de juin a septembre : {hors} ({pct(hors, len(feux))})",
+            ""]
 
 
 # ---------------------------------------------------------------------------
@@ -266,6 +291,7 @@ def main() -> int:
         lignes += rapport_seuil(j, nom, mdf[mdf["dep"] == dep], feux, crit)
     lignes += [f"- Jours de danger eleve, Corse-du-Sud et Haute-Corse "
                f"ensemble (saisons communes) : {eleves}", ""]
+    lignes += rapport_hors_saison(feux_2a)
     lignes += ["## Volet zones : BDIFF par commune", ""]
     lignes += rapport_zones(feux_2a)
 
