@@ -1,6 +1,7 @@
-"""Calculs de l'objectif KPI S1 d'Ahmed Philippe (Q1 : où se concentrent les départs de feu).
+"""Calculs de l'objectif KPI S1 et de la fiche d'indicateurs S2 d'Ahmed Philippe (Q1).
 
-Refait tous les chiffres de kpi/objectif-ahmed-philippe.md à partir de l'export BDIFF
+Refait tous les chiffres de kpi/objectif-ahmed-philippe.md et de
+kpi/fiche-indicateurs-ahmed-philippe.md à partir de l'export BDIFF
 de la Corse-du-Sud (type de feu F, date de première alerte du 2006-01-01 au 2025-12-31,
 mêmes critères que docs/qualite/profil-bdiff.md).
 
@@ -98,6 +99,64 @@ def main(chemin):
     surf = df.groupby("Code INSEE")["ha"].sum().sort_values(ascending=False)
     print(f"\nSurfaces 2006-2025 : {surf.sum():.0f} ha ; trois premières communes : "
           + ", ".join(f"{noms[c]} {v:.0f} ha" for c, v in surf.head(3).items()))
+
+    fiche_s2(df, ete, test)
+
+
+def part_surface(feux, liste):
+    """Surface brûlée (ha) dans la liste, et surface totale."""
+    return feux[feux["Code INSEE"].isin(liste)]["ha"].sum(), feux["ha"].sum()
+
+
+def fiche_s2(df, ete, test):
+    """Chiffres de kpi/fiche-indicateurs-ahmed-philippe.md (séance S2)."""
+    print("\n=== Fiche d'indicateurs S2 ===")
+
+    # Un paramètre change : k, puis la fenêtre de classement
+    print("\nParamètres (I1 et I2 sur les étés 2024-2025 ; stabilité 2016-2025)")
+    variantes = [(k, 10) for k in (15, 20, 25)] + [(20, n) for n in (5, 18)]
+    for k, n in variantes:
+        liste = classement(df, range(2024 - n, 2024)).index[:k]
+        a, b = part_dans_liste(test, liste)
+        h, t = part_surface(test, liste)
+        ligne = f"  k={k}, fenêtre {n} ans : I1 {pct(a, b)}, I2 {pct(h, t)}"
+        if k == TAILLE_LISTE:
+            parts = []
+            for annee in range(2016, 2026):
+                liste_a = classement(df, range(annee - n, annee)).index[:k]
+                parts.append(ete[ete["Année"] == annee]["Code INSEE"].isin(liste_a).mean())
+            ligne += (f", stabilité moyenne {100 * sum(parts) / len(parts):.1f} %, "
+                      f"minimum {100 * min(parts):.1f} %")
+        print(ligne)
+    print(f"  k=30, fenêtre 10 ans : I1 "
+          + pct(*part_dans_liste(test, classement(df, ANNEES_CLASSEMENT).index[:30])))
+
+    # I2 été par été, avec la surface totale (seuil plancher : 20 ha)
+    print("\nI2 été par été (liste des 10 années précédentes, 20 communes)")
+    for annee in range(2016, 2026):
+        liste_a = classement(df, range(annee - 10, annee)).index[:TAILLE_LISTE]
+        h, t = part_surface(ete[ete["Année"] == annee], liste_a)
+        lu = "" if t >= 20 else " (sous le seuil plancher de 20 ha : non lu)"
+        print(f"  {annee} : {pct(h, t) if t else 'sans surface'} de {t:.1f} ha{lu}")
+
+    # KPI secondaire : nombre de communes pour la moitié des feux de l'été
+    print("\nCommunes qui font la moitié des feux de l'été")
+    for libelle, sel in [(str(a), ete[ete["Année"] == a]) for a in ANNEES_REFERENCE] + \
+            [("2006-2025", ete)]:
+        cumul = sel.groupby("Code INSEE").size().sort_values(ascending=False).cumsum() / len(sel)
+        print(f"  {libelle} : {(cumul < 0.5).sum() + 1} communes ({len(sel)} feux)")
+
+    # Lecture mensuelle : nombre de feux par mois (seuil plancher : 20 feux)
+    print("\nFeux par mois, étés 2024-2025 (lecture mensuelle si 20 feux ou plus)")
+    mois = test.groupby([test["Année"], test["date"].dt.month]).size()
+    for (annee, m), n in mois.items():
+        print(f"  {annee}-{m:02d} : {n} feux{'' if n >= 20 else ' (non lu)'}")
+
+    # Détournement 2 : petits feux contre grands feux
+    par_commune = df.groupby("Nom de la commune").agg(feux=("ha", "size"), ha=("ha", "sum"))
+    for nom in ("Ajaccio", "Fozzano"):
+        print(f"  {nom} 2006-2025 : {par_commune.loc[nom, 'feux']} feux, "
+              f"{par_commune.loc[nom, 'ha']:.0f} ha")
 
 
 if __name__ == "__main__":
